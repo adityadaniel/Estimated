@@ -7,23 +7,67 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		115B522322DD761E00B83DE3 /* NotificationReminderSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B522222DD761E00B83DE3 /* NotificationReminderSettingsViewController.swift */; };
+		115B522622DEB7E200B83DE3 /* MainViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B522522DEB7E200B83DE3 /* MainViewController+UITableViewDelegate.swift */; };
+		115B522822DEB85C00B83DE3 /* MainViewController+PresetButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B522722DEB85C00B83DE3 /* MainViewController+PresetButtonDelegate.swift */; };
+		115B522A22DEB88700B83DE3 /* MainViewController+DurationPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B522922DEB88700B83DE3 /* MainViewController+DurationPickerDelegate.swift */; };
+		115B522C22DEB8B400B83DE3 /* MainPickerController+NotificationSettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B522B22DEB8B400B83DE3 /* MainPickerController+NotificationSettingsDelegate.swift */; };
+		115B522E22DEB90700B83DE3 /* MainViewController+UITableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B522D22DEB90700B83DE3 /* MainViewController+UITableViewDatasource.swift */; };
+		115B523222DEE03700B83DE3 /* MainViewController+StartTimerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B523122DEE03700B83DE3 /* MainViewController+StartTimerDelegate.swift */; };
+		115B523422DEF3ED00B83DE3 /* MainViewController+TaskNameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B523322DEF3ED00B83DE3 /* MainViewController+TaskNameDelegate.swift */; };
+		115B523622DF522000B83DE3 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B523522DF522000B83DE3 /* TimerViewController.swift */; };
+		115B523B22DF566400B83DE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 115B523A22DF566400B83DE3 /* Assets.xcassets */; };
+		115B523D22DF59B300B83DE3 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B523C22DF59B300B83DE3 /* CircularProgressBarView.swift */; };
 		11FFF95E22DC5DAC00A9180A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF95D22DC5DAC00A9180A /* AppDelegate.swift */; };
-		11FFF96022DC5DAC00A9180A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF95F22DC5DAC00A9180A /* ViewController.swift */; };
+		11FFF96022DC5DAC00A9180A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF95F22DC5DAC00A9180A /* MainViewController.swift */; };
 		11FFF96322DC5DAC00A9180A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FFF96122DC5DAC00A9180A /* Main.storyboard */; };
 		11FFF96622DC5DAC00A9180A /* Estimated.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF96422DC5DAC00A9180A /* Estimated.xcdatamodeld */; };
-		11FFF96822DC5DAE00A9180A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11FFF96722DC5DAE00A9180A /* Assets.xcassets */; };
 		11FFF96B22DC5DAE00A9180A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FFF96922DC5DAE00A9180A /* LaunchScreen.storyboard */; };
+		11FFF97522DC633E00A9180A /* DurationPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF97322DC633E00A9180A /* DurationPickerCell.swift */; };
+		11FFF97622DC633E00A9180A /* DurationPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11FFF97422DC633E00A9180A /* DurationPickerViewCell.xib */; };
+		11FFF97922DC6DCF00A9180A /* PresetButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF97722DC6DCF00A9180A /* PresetButtonCell.swift */; };
+		11FFF97A22DC6DCF00A9180A /* PresetButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11FFF97822DC6DCF00A9180A /* PresetButtonCell.xib */; };
+		11FFF97C22DC6EF400A9180A /* ETButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF97B22DC6EF400A9180A /* ETButton.swift */; };
+		11FFF97F22DC6F2D00A9180A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF97E22DC6F2D00A9180A /* UIColor.swift */; };
+		11FFF98222DC722A00A9180A /* NotificationReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF98022DC722A00A9180A /* NotificationReminderCell.swift */; };
+		11FFF98322DC722A00A9180A /* NotificationReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11FFF98122DC722A00A9180A /* NotificationReminderCell.xib */; };
+		11FFF98622DC756F00A9180A /* TaskNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF98422DC756F00A9180A /* TaskNameCell.swift */; };
+		11FFF98722DC756F00A9180A /* TaskNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11FFF98522DC756F00A9180A /* TaskNameCell.xib */; };
+		11FFF98A22DC764D00A9180A /* StartTimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF98822DC764D00A9180A /* StartTimerCell.swift */; };
+		11FFF98B22DC764D00A9180A /* StartTimerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11FFF98922DC764D00A9180A /* StartTimerCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		115B522222DD761E00B83DE3 /* NotificationReminderSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReminderSettingsViewController.swift; sourceTree = "<group>"; };
+		115B522522DEB7E200B83DE3 /* MainViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		115B522722DEB85C00B83DE3 /* MainViewController+PresetButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+PresetButtonDelegate.swift"; sourceTree = "<group>"; };
+		115B522922DEB88700B83DE3 /* MainViewController+DurationPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+DurationPickerDelegate.swift"; sourceTree = "<group>"; };
+		115B522B22DEB8B400B83DE3 /* MainPickerController+NotificationSettingsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainPickerController+NotificationSettingsDelegate.swift"; sourceTree = "<group>"; };
+		115B522D22DEB90700B83DE3 /* MainViewController+UITableViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+UITableViewDatasource.swift"; sourceTree = "<group>"; };
+		115B523122DEE03700B83DE3 /* MainViewController+StartTimerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+StartTimerDelegate.swift"; sourceTree = "<group>"; };
+		115B523322DEF3ED00B83DE3 /* MainViewController+TaskNameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+TaskNameDelegate.swift"; sourceTree = "<group>"; };
+		115B523522DF522000B83DE3 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		115B523A22DF566400B83DE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		115B523C22DF59B300B83DE3 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
 		11FFF95A22DC5DAC00A9180A /* Estimated.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Estimated.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FFF95D22DC5DAC00A9180A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		11FFF95F22DC5DAC00A9180A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		11FFF95F22DC5DAC00A9180A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		11FFF96222DC5DAC00A9180A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		11FFF96522DC5DAC00A9180A /* Estimated.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Estimated.xcdatamodel; sourceTree = "<group>"; };
-		11FFF96722DC5DAE00A9180A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11FFF96A22DC5DAE00A9180A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11FFF96C22DC5DAE00A9180A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11FFF97322DC633E00A9180A /* DurationPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPickerCell.swift; sourceTree = "<group>"; };
+		11FFF97422DC633E00A9180A /* DurationPickerViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DurationPickerViewCell.xib; sourceTree = "<group>"; };
+		11FFF97722DC6DCF00A9180A /* PresetButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetButtonCell.swift; sourceTree = "<group>"; };
+		11FFF97822DC6DCF00A9180A /* PresetButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresetButtonCell.xib; sourceTree = "<group>"; };
+		11FFF97B22DC6EF400A9180A /* ETButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETButton.swift; sourceTree = "<group>"; };
+		11FFF97E22DC6F2D00A9180A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		11FFF98022DC722A00A9180A /* NotificationReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReminderCell.swift; sourceTree = "<group>"; };
+		11FFF98122DC722A00A9180A /* NotificationReminderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationReminderCell.xib; sourceTree = "<group>"; };
+		11FFF98422DC756F00A9180A /* TaskNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNameCell.swift; sourceTree = "<group>"; };
+		11FFF98522DC756F00A9180A /* TaskNameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskNameCell.xib; sourceTree = "<group>"; };
+		11FFF98822DC764D00A9180A /* StartTimerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerCell.swift; sourceTree = "<group>"; };
+		11FFF98922DC764D00A9180A /* StartTimerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartTimerCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +81,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		115B522422DEB73800B83DE3 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				11FFF95F22DC5DAC00A9180A /* MainViewController.swift */,
+				115B522522DEB7E200B83DE3 /* MainViewController+UITableViewDelegate.swift */,
+				115B522D22DEB90700B83DE3 /* MainViewController+UITableViewDatasource.swift */,
+				115B522922DEB88700B83DE3 /* MainViewController+DurationPickerDelegate.swift */,
+				115B522722DEB85C00B83DE3 /* MainViewController+PresetButtonDelegate.swift */,
+				115B522B22DEB8B400B83DE3 /* MainPickerController+NotificationSettingsDelegate.swift */,
+				115B523322DEF3ED00B83DE3 /* MainViewController+TaskNameDelegate.swift */,
+				115B523122DEE03700B83DE3 /* MainViewController+StartTimerDelegate.swift */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
 		11FFF95122DC5DAC00A9180A = {
 			isa = PBXGroup;
 			children = (
@@ -56,15 +115,46 @@
 		11FFF95C22DC5DAC00A9180A /* Estimated */ = {
 			isa = PBXGroup;
 			children = (
+				115B522422DEB73800B83DE3 /* MainViewController */,
+				11FFF97D22DC6F1300A9180A /* Helpers */,
+				11FFF97222DC631A00A9180A /* Views */,
 				11FFF95D22DC5DAC00A9180A /* AppDelegate.swift */,
-				11FFF95F22DC5DAC00A9180A /* ViewController.swift */,
 				11FFF96122DC5DAC00A9180A /* Main.storyboard */,
-				11FFF96722DC5DAE00A9180A /* Assets.xcassets */,
+				115B522222DD761E00B83DE3 /* NotificationReminderSettingsViewController.swift */,
 				11FFF96922DC5DAE00A9180A /* LaunchScreen.storyboard */,
 				11FFF96C22DC5DAE00A9180A /* Info.plist */,
 				11FFF96422DC5DAC00A9180A /* Estimated.xcdatamodeld */,
+				115B523522DF522000B83DE3 /* TimerViewController.swift */,
+				115B523A22DF566400B83DE3 /* Assets.xcassets */,
 			);
 			path = Estimated;
+			sourceTree = "<group>";
+		};
+		11FFF97222DC631A00A9180A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				11FFF97322DC633E00A9180A /* DurationPickerCell.swift */,
+				11FFF97422DC633E00A9180A /* DurationPickerViewCell.xib */,
+				11FFF97722DC6DCF00A9180A /* PresetButtonCell.swift */,
+				11FFF97822DC6DCF00A9180A /* PresetButtonCell.xib */,
+				11FFF97B22DC6EF400A9180A /* ETButton.swift */,
+				11FFF98022DC722A00A9180A /* NotificationReminderCell.swift */,
+				11FFF98122DC722A00A9180A /* NotificationReminderCell.xib */,
+				11FFF98422DC756F00A9180A /* TaskNameCell.swift */,
+				11FFF98522DC756F00A9180A /* TaskNameCell.xib */,
+				11FFF98822DC764D00A9180A /* StartTimerCell.swift */,
+				11FFF98922DC764D00A9180A /* StartTimerCell.xib */,
+				115B523C22DF59B300B83DE3 /* CircularProgressBarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		11FFF97D22DC6F1300A9180A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				11FFF97E22DC6F2D00A9180A /* UIColor.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +216,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				11FFF96B22DC5DAE00A9180A /* LaunchScreen.storyboard in Resources */,
-				11FFF96822DC5DAE00A9180A /* Assets.xcassets in Resources */,
+				11FFF97A22DC6DCF00A9180A /* PresetButtonCell.xib in Resources */,
+				115B523B22DF566400B83DE3 /* Assets.xcassets in Resources */,
+				11FFF98B22DC764D00A9180A /* StartTimerCell.xib in Resources */,
+				11FFF98722DC756F00A9180A /* TaskNameCell.xib in Resources */,
+				11FFF97622DC633E00A9180A /* DurationPickerViewCell.xib in Resources */,
+				11FFF98322DC722A00A9180A /* NotificationReminderCell.xib in Resources */,
 				11FFF96322DC5DAC00A9180A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,8 +233,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11FFF98622DC756F00A9180A /* TaskNameCell.swift in Sources */,
 				11FFF96622DC5DAC00A9180A /* Estimated.xcdatamodeld in Sources */,
-				11FFF96022DC5DAC00A9180A /* ViewController.swift in Sources */,
+				11FFF97F22DC6F2D00A9180A /* UIColor.swift in Sources */,
+				11FFF97922DC6DCF00A9180A /* PresetButtonCell.swift in Sources */,
+				115B522E22DEB90700B83DE3 /* MainViewController+UITableViewDatasource.swift in Sources */,
+				11FFF98A22DC764D00A9180A /* StartTimerCell.swift in Sources */,
+				115B523422DEF3ED00B83DE3 /* MainViewController+TaskNameDelegate.swift in Sources */,
+				115B523622DF522000B83DE3 /* TimerViewController.swift in Sources */,
+				115B522322DD761E00B83DE3 /* NotificationReminderSettingsViewController.swift in Sources */,
+				115B522A22DEB88700B83DE3 /* MainViewController+DurationPickerDelegate.swift in Sources */,
+				115B523222DEE03700B83DE3 /* MainViewController+StartTimerDelegate.swift in Sources */,
+				11FFF96022DC5DAC00A9180A /* MainViewController.swift in Sources */,
+				11FFF97522DC633E00A9180A /* DurationPickerCell.swift in Sources */,
+				11FFF97C22DC6EF400A9180A /* ETButton.swift in Sources */,
+				115B523D22DF59B300B83DE3 /* CircularProgressBarView.swift in Sources */,
+				115B522C22DEB8B400B83DE3 /* MainPickerController+NotificationSettingsDelegate.swift in Sources */,
+				115B522822DEB85C00B83DE3 /* MainViewController+PresetButtonDelegate.swift in Sources */,
+				11FFF98222DC722A00A9180A /* NotificationReminderCell.swift in Sources */,
+				115B522622DEB7E200B83DE3 /* MainViewController+UITableViewDelegate.swift in Sources */,
 				11FFF95E22DC5DAC00A9180A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

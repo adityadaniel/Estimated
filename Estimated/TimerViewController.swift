@@ -20,6 +20,17 @@ class TimerViewController: UIViewController {
   
   var seconds: Int = 0
   
+  var diffHrs = 0
+  var diffMins = 0
+  var diffSecs = 0
+  
+  //adding container
+  private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+  
+  private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+  
+  public var activities = [Activity]()
+  
   @IBOutlet weak var circularProgressBar: CircularProgressBar!
   
   @IBOutlet weak var cancelButton: UIButton! {
@@ -54,12 +65,23 @@ class TimerViewController: UIViewController {
   
   @IBAction func doneButtonDidTap(_ sender: ETButton) {
     
-    // show alert controller
-    // invalidate timer
-    // save timer to coredata
-    // segue to history tab
-    
-    timer?.invalidate()
+    let alert = UIAlertController(title: "Finish timer", message: "Are you sure?", preferredStyle: .alert)
+    let okAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+        self.timer?.invalidate()
+        //self.addActivity()
+        self.isTimerRunning = false
+        self.dismiss(animated: true, completion: {
+            self.dismiss(animated: true, completion: nil)
+        })
+    }
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+        self.timer?.invalidate()
+        self.isTimerRunning = false
+        self.dismiss(animated: true, completion: nil)
+    }
+    alert.addAction(okAction)
+    alert.addAction(cancelAction)
+    self.present(alert, animated: true, completion: nil)
   }
   
   override func viewDidLoad() {
@@ -77,6 +99,36 @@ class TimerViewController: UIViewController {
     startTimer()
     
     taskLabel.text = runningEstimationTimer.taskName!
+    NotificationCenter.default.addObserver(self, selector: #selector(pauseWhenBackground(noti:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(noti:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+  }
+  
+  @objc func pauseWhenBackground(noti: Notification) {
+    self.timer?.invalidate()
+    let shared = UserDefaults.standard
+    shared.set(Date(), forKey: "savedTime")
+  }
+  
+  @objc func willEnterForeground(noti: Notification) {
+    if let savedDate = UserDefaults.standard.object(forKey: "savedTime") as? Date {
+      (diffHrs, diffMins, diffSecs) = TimerViewController.getTimeDifference(startDate: savedDate)
+      
+      self.refresh(hours: diffHrs, mins: diffMins, secs: diffSecs)
+    }
+  }
+  
+  static func getTimeDifference(startDate: Date) -> (Int, Int, Int) {
+    let calendar = Calendar.current
+    let components = calendar.dateComponents([.hour, .minute, .second], from: startDate, to: Date())
+    return(components.hour!, components.minute!, components.second!)
+  }
+  
+  func refresh (hours: Int, mins: Int, secs: Int) {
+    let hrs = hours * 3600
+    let minutes = mins * 60
+    let s = secs
+    seconds += hrs + minutes + s + 1
+    self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerLabel), userInfo: nil, repeats: true)
     
   }
 
@@ -126,4 +178,39 @@ class TimerViewController: UIViewController {
     }
     
   }
+  
+  //adding activity without cancel
+  func addActivity(name: String, estimated: Int, spend: Int, date: Date) {
+    let activity = Activity(entity: Activity.entity(), insertInto: context)
+    activity.name = name
+    activity.estimatedTime = Int32(estimated)
+    activity.spendTime = Int32(spend)
+    activity.date = date
+    activity.isCancelled = false
+    activities.append(activity)
+    appDelegate.saveContext()
+  }
+  
+  //adding activity with cancellation reason
+  func addActivity(name: String, estimated: Int, spend: Int, date: Date, cancelReason: String) {
+    let activity = Activity(entity: Activity.entity(), insertInto: context)
+    activity.name = name
+    activity.estimatedTime = Int32(estimated)
+    activity.spendTime = Int32(spend)
+    activity.date = date
+    activity.isCancelled = true
+    activity.cancellationReason = cancelReason
+    activities.append(activity)
+    appDelegate.saveContext()
+  }
+  
+  //fetching activity and put it into activities array
+  private func fetchActivity() {
+    do {
+      activities = try context.fetch(Activity.fetchRequest())
+    } catch let error as NSError {
+      print("Could not fetch. \(error), \(error.userInfo)")
+    }
+  }
+    
 }

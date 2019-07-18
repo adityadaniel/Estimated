@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="x3n-Vg-4a1">
-                                <rect key="frame" x="20" y="681" width="374" height="92"/>
+                                <rect key="frame" x="20" y="730" width="374" height="92"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVs-Nd-a9J" customClass="ETButton" customModule="Estimated" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
@@ -67,7 +67,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Powerpoint" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN3-p9-GTM">
                                 <rect key="frame" x="20" y="234" width="374" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -89,7 +89,7 @@
                         <outlet property="cancelButton" destination="dpB-z4-nqj" id="tw1-nM-LuY"/>
                         <outlet property="circularProgressBar" destination="LT4-il-3Bo" id="m4z-Gx-D87"/>
                         <outlet property="doneButton" destination="aVs-Nd-a9J" id="fil-Ws-Xt5"/>
-                        <outlet property="taskLabel" destination="LN3-p9-GTM" id="xV4-k1-Dwg"/>
+                        <outlet property="estimationLabel" destination="LN3-p9-GTM" id="FfJ-ZY-kfe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cM3-6v-OsK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,7 +170,7 @@
                     <navigationItem key="navigationItem" id="yyl-UA-a0g"/>
                     <connections>
                         <outlet property="tableView" destination="cBc-Vv-Gls" id="7hn-yd-mAE"/>
-                        <segue destination="aYP-zN-iIX" kind="show" identifier="StartTimerSegue" id="SLJ-Un-4gx"/>
+                        <segue destination="aYP-zN-iIX" kind="showDetail" identifier="StartTimerSegue" id="SLJ-Un-4gx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWZ-3m-ytv" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -30,7 +30,7 @@ class TimerViewController: UIViewController {
   }
   @IBOutlet weak var doneButton: ETButton!
   
-  @IBOutlet weak var taskLabel: UILabel!
+  @IBOutlet weak var estimationLabel: UILabel!
   
   @IBAction func cancelButtonDidTap(_ sender: ETButton) {
     
@@ -55,11 +55,23 @@ class TimerViewController: UIViewController {
   @IBAction func doneButtonDidTap(_ sender: ETButton) {
     
     // show alert controller
-    // invalidate timer
+    let alertController = UIAlertController(title: "Are you sure to finish this timer?", message: "Are you sure to finish the timer?", preferredStyle: .alert)
+    
+    let okAction = UIAlertAction(title: "Finish", style: .default) { (_) in
+      self.timer?.invalidate()
+      self.dismiss(animated: true, completion: nil)
+      // save the data to core data
+    }
+    
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+      self.dismiss(animated: true, completion: nil)
+    }
+    
+    alertController.addAction(okAction)
+    alertController.addAction(cancelAction)
+
     // save timer to coredata
     // segue to history tab
-    
-    timer?.invalidate()
   }
   
   override func viewDidLoad() {
@@ -69,14 +81,14 @@ class TimerViewController: UIViewController {
     title = "\(runningEstimationTimer.taskName!)"
     navigationController?.navigationBar.prefersLargeTitles = true
     
-    
     let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
     navigationItem.leftBarButtonItem = backButton
     
-    
     startTimer()
     
-    taskLabel.text = runningEstimationTimer.taskName!
+    let durationInString = timeString(time: runningEstimationTimer.duration!)
+    
+    estimationLabel.text = "Estimation: \(durationInString)"
     
   }
 
@@ -93,7 +105,7 @@ class TimerViewController: UIViewController {
     timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerLabel), userInfo: nil, repeats: true)
     circularProgressBar.labelSize = 24
     circularProgressBar.safePercent = 80
-    circularProgressBar.lineWidth = 20
+    circularProgressBar.lineWidth = 25
   }
   
   func timeString(time:TimeInterval) -> String {

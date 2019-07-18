@@ -12,7 +12,7 @@ import OnboardKit
 
 class MainViewController: UIViewController {
   
-  var duration: Int = 60
+  var duration: Int = 15 * 60
   var intervalSetting = 5
   var taskName = ""
   
@@ -23,6 +23,7 @@ class MainViewController: UIViewController {
     
     title = "Set Timer"
     navigationController?.navigationBar.prefersLargeTitles = true
+    
     navigationController?.navigationBar.tintColor = Colors.purple
     tabBarController?.tabBar.tintColor = Colors.purple
     
@@ -30,19 +31,18 @@ class MainViewController: UIViewController {
     
     NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-//    toggle this to show
-//    UserDefaults.standard.set(false, forKey: "onboardingScreenShown")
+    //    toggle this to show
+    //    UserDefaults.standard.set(false, forKey: "onboardingScreenShown")
     
     
-//    let indexPath = IndexPath(row: 0, section: SetTimerSection.DurationPicker.rawValue)
-//    let durationCell = tableView.cellForRow(at: indexPath) as! DurationPickerCell
-//    durationCell.durationPicker.date = defaultDate!
+    //    let indexPath = IndexPath(row: 0, section: SetTimerSection.DurationPicker.rawValue)
+    //    let durationCell = tableView.cellForRow(at: indexPath) as! DurationPickerCell
+    //    durationCell.durationPicker.date = defaultDate!
     
     if !UserDefaults.standard.bool(forKey: "onboardingScreenShown") {
       self.showOnboardingPage()
@@ -88,7 +88,7 @@ class MainViewController: UIViewController {
       
     }
   }
-
+  
   
   // MARK: - Onboarding page
   lazy var onboardingPages: [OnboardPage] = {
@@ -111,7 +111,7 @@ class MainViewController: UIViewController {
                                imageName: "onboard-chart",
                                description: "You can check your performance and history in the statistics tab.",
                                advanceButtonTitle: "")
-
+    
     let pageFive = OnboardPage(title: "All Ready",
                                imageName: "ikon",
                                description: "You are all set up and ready to use Estimated. Begin by estimating your first task!",

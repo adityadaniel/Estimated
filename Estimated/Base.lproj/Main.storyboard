@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--History View Controller-->
         <scene sceneID="6U6-zw-ILr">
             <objects>
-                <viewController id="SBR-Dd-lbq" sceneMemberID="viewController">
+                <viewController id="SBR-Dd-lbq" customClass="HistoryViewController" customModule="Estimated" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XRb-0O-DlO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rK6-yv-mNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087" y="729"/>
+            <point key="canvasLocation" x="1087" y="575"/>
         </scene>
         <!--Timer View Controller-->
         <scene sceneID="cLx-6U-bOt">
@@ -34,26 +34,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="x3n-Vg-4a1">
-                                <rect key="frame" x="20" y="782" width="374" height="40"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="x3n-Vg-4a1">
+                                <rect key="frame" x="20" y="681" width="374" height="92"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpB-z4-nqj" customClass="ETButton" customModule="Estimated" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="167" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVs-Nd-a9J" customClass="ETButton" customModule="Estimated" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                                        <state key="normal" title="Finish Timer"/>
+                                        <connections>
+                                            <action selector="doneButtonDidTap:" destination="aYP-zN-iIX" eventType="touchUpInside" id="QS0-8R-RIB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpB-z4-nqj">
+                                        <rect key="frame" x="0.0" y="52" width="374" height="40"/>
                                         <state key="normal" title="Cancel"/>
                                         <connections>
                                             <action selector="cancelButtonDidTap:" destination="aYP-zN-iIX" eventType="touchUpInside" id="WYv-ag-nr8"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVs-Nd-a9J" customClass="ETButton" customModule="Estimated" customModuleProvider="target">
-                                        <rect key="frame" x="207" y="0.0" width="167" height="40"/>
-                                        <state key="normal" title="Done"/>
-                                        <connections>
-                                            <action selector="doneButtonDidTap:" destination="aYP-zN-iIX" eventType="touchUpInside" id="QS0-8R-RIB"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="dOL-se-Aoh"/>
+                                    <constraint firstAttribute="height" constant="92" id="dOL-se-Aoh"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LT4-il-3Bo" customClass="CircularProgressBar" customModule="Estimated" customModuleProvider="target">
@@ -64,13 +64,23 @@
                                     <constraint firstAttribute="height" constant="300" id="xLt-nz-R8y"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Powerpoint" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN3-p9-GTM">
+                                <rect key="frame" x="20" y="234" width="374" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="LT4-il-3Bo" firstAttribute="centerX" secondItem="nAI-Vw-I2S" secondAttribute="centerX" id="60a-SR-pDd"/>
+                            <constraint firstItem="LT4-il-3Bo" firstAttribute="top" secondItem="LN3-p9-GTM" secondAttribute="bottom" constant="40" id="CdM-7H-aCg"/>
                             <constraint firstItem="x3n-Vg-4a1" firstAttribute="leading" secondItem="UW2-09-T7P" secondAttribute="leading" constant="20" id="Cz0-vF-54u"/>
                             <constraint firstItem="UW2-09-T7P" firstAttribute="bottom" secondItem="x3n-Vg-4a1" secondAttribute="bottom" constant="40" id="IXx-ue-Erc"/>
+                            <constraint firstItem="LN3-p9-GTM" firstAttribute="centerX" secondItem="nAI-Vw-I2S" secondAttribute="centerX" id="K5b-3A-qP4"/>
+                            <constraint firstItem="LN3-p9-GTM" firstAttribute="leading" secondItem="UW2-09-T7P" secondAttribute="leading" constant="20" id="UEH-lw-PCW"/>
                             <constraint firstItem="UW2-09-T7P" firstAttribute="trailing" secondItem="x3n-Vg-4a1" secondAttribute="trailing" constant="20" id="dCA-8x-eVG"/>
+                            <constraint firstItem="UW2-09-T7P" firstAttribute="trailing" secondItem="LN3-p9-GTM" secondAttribute="trailing" constant="20" id="k2q-0z-V5Z"/>
                             <constraint firstItem="LT4-il-3Bo" firstAttribute="centerY" secondItem="nAI-Vw-I2S" secondAttribute="centerY" id="uBL-Jv-JPp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UW2-09-T7P"/>
@@ -79,11 +89,12 @@
                         <outlet property="cancelButton" destination="dpB-z4-nqj" id="tw1-nM-LuY"/>
                         <outlet property="circularProgressBar" destination="LT4-il-3Bo" id="m4z-Gx-D87"/>
                         <outlet property="doneButton" destination="aVs-Nd-a9J" id="fil-Ws-Xt5"/>
+                        <outlet property="taskLabel" destination="LN3-p9-GTM" id="xV4-k1-Dwg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cM3-6v-OsK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1759.4202898550725" y="704.46428571428567"/>
+            <point key="canvasLocation" x="1886" y="575"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="zv9-rA-Qpk">
@@ -159,7 +170,7 @@
                     <navigationItem key="navigationItem" id="yyl-UA-a0g"/>
                     <connections>
                         <outlet property="tableView" destination="cBc-Vv-Gls" id="7hn-yd-mAE"/>
-                        <segue destination="aYP-zN-iIX" kind="showDetail" identifier="StartTimerSegue" id="SLJ-Un-4gx"/>
+                        <segue destination="aYP-zN-iIX" kind="show" identifier="StartTimerSegue" id="SLJ-Un-4gx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWZ-3m-ytv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -184,11 +195,13 @@
             </objects>
             <point key="canvasLocation" x="-1194" y="147"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Set Timer-->
         <scene sceneID="4nY-b8-ptq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CEK-Rg-Cmd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" selectedImage="clock" id="zGN-1F-dlT"/>
+                    <tabBarItem key="tabBarItem" title="Set Timer" image="timer" selectedImage="timer" id="zGN-1F-dlT">
+                        <color key="badgeColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="APh-M8-aXz">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -207,7 +220,7 @@
         <scene sceneID="Ldl-Aj-efd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IvV-Ki-KDI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="History" image="Clock" selectedImage="chart" id="qdi-4Q-NJd"/>
+                    <tabBarItem key="tabBarItem" title="History" image="chart" selectedImage="chart" id="qdi-4Q-NJd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dzm-Uc-n97">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -333,8 +346,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Clock" width="27" height="27"/>
         <image name="chart" width="27" height="27"/>
-        <image name="clock" width="27" height="27"/>
+        <image name="timer" width="25" height="25"/>
     </resources>
 </document>

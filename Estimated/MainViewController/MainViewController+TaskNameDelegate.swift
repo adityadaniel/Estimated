@@ -9,7 +9,8 @@
 import UIKit
 
 extension MainViewController: TaskNameDelegate {
-    func finishAddingTaskName(taskName: String) {
-        self.taskName = taskName
-    }
+  func finishAddingTaskName(taskName: String) {
+    self.taskName = taskName
+    print("taskname", taskName)
+  }
 }

@@ -22,13 +22,15 @@ class TimerViewController: UIViewController {
   
   @IBOutlet weak var circularProgressBar: CircularProgressBar!
   
-  @IBOutlet weak var cancelButton: ETButton! {
+  @IBOutlet weak var cancelButton: UIButton! {
     didSet {
-      cancelButton.backgroundColor = Colors.darkRed
+      cancelButton.backgroundColor = .clear
+      cancelButton.setTitleColor(.red, for: .normal)
     }
   }
   @IBOutlet weak var doneButton: ETButton!
   
+  @IBOutlet weak var taskLabel: UILabel!
   
   @IBAction func cancelButtonDidTap(_ sender: ETButton) {
     
@@ -52,6 +54,7 @@ class TimerViewController: UIViewController {
   
   @IBAction func doneButtonDidTap(_ sender: ETButton) {
     
+    // show alert controller
     // invalidate timer
     // save timer to coredata
     // segue to history tab
@@ -63,7 +66,18 @@ class TimerViewController: UIViewController {
     super.viewDidLoad()
     
     navigationController?.navigationBar.tintColor = Colors.purple
+    title = "\(runningEstimationTimer.taskName!)"
+    navigationController?.navigationBar.prefersLargeTitles = true
+    
+    
+    let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+    navigationItem.leftBarButtonItem = backButton
+    
+    
     startTimer()
+    
+    taskLabel.text = runningEstimationTimer.taskName!
+    
   }
 
   

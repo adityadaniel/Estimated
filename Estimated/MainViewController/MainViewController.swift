@@ -12,12 +12,6 @@ import OnboardKit
 
 class MainViewController: UIViewController {
   
-  struct Estimation {
-    var duration: TimeInterval?
-    var reminderNotification: Int?
-    var taskName: String?
-  }
-  
   var duration: Int = 60
   var intervalSetting = 5
   var taskName = ""
@@ -32,18 +26,23 @@ class MainViewController: UIViewController {
     navigationController?.navigationBar.tintColor = Colors.purple
     tabBarController?.tabBar.tintColor = Colors.purple
     
-    
     setupCell()
     
     NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    // toggle this to show
-    UserDefaults.standard.set(false, forKey: "onboardingScreenShown")
+//    toggle this to show
+//    UserDefaults.standard.set(false, forKey: "onboardingScreenShown")
+    
+    
+//    let indexPath = IndexPath(row: 0, section: SetTimerSection.DurationPicker.rawValue)
+//    let durationCell = tableView.cellForRow(at: indexPath) as! DurationPickerCell
+//    durationCell.durationPicker.date = defaultDate!
     
     if !UserDefaults.standard.bool(forKey: "onboardingScreenShown") {
       self.showOnboardingPage()
@@ -76,13 +75,20 @@ class MainViewController: UIViewController {
         destinationController.interval = intervalSetting
       }
     case "StartTimerSegue":
+      
       let est = Estimation(duration: TimeInterval(self.duration), reminderNotification: self.intervalSetting, taskName: self.taskName)
-      print(est)
+      
+      if let destinationController = segue.destination as? TimerViewController {
+        destinationController.runningEstimationTimer = est
+        print(est)
+        
+      }
     default:
       break
       
     }
   }
+
   
   // MARK: - Onboarding page
   lazy var onboardingPages: [OnboardPage] = {
@@ -115,7 +121,10 @@ class MainViewController: UIViewController {
   }()
   
   fileprivate func showOnboardingPage() {
-    let onboardingViewController = OnboardViewController(pageItems: onboardingPages)
+    
+    let appearance = OnboardViewController.AppearanceConfiguration(tintColor: Colors.purple, titleColor: Colors.purple)
+    
+    let onboardingViewController = OnboardViewController(pageItems: onboardingPages, appearanceConfiguration: appearance)
     onboardingViewController.modalPresentationStyle = .formSheet
     onboardingViewController.presentFrom(self, animated: true)
   }

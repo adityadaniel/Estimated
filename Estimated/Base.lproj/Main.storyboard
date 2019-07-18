@@ -34,21 +34,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldQ-Iq-EVe">
-                                <rect key="frame" x="57" y="144" width="300" height="300"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kaW-Zx-c0K" customClass="CircularProgressBar" customModule="Estimated" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="f8R-11-7sx"/>
-                                    <constraint firstAttribute="width" constant="300" id="lPT-uJ-zIz"/>
-                                </constraints>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="x3n-Vg-4a1">
                                 <rect key="frame" x="20" y="782" width="374" height="40"/>
                                 <subviews>
@@ -71,26 +56,34 @@
                                     <constraint firstAttribute="height" constant="40" id="dOL-se-Aoh"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LT4-il-3Bo" customClass="CircularProgressBar" customModule="Estimated" customModuleProvider="target">
+                                <rect key="frame" x="57" y="298" width="300" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="oBJ-rQ-j3t"/>
+                                    <constraint firstAttribute="height" constant="300" id="xLt-nz-R8y"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="LT4-il-3Bo" firstAttribute="centerX" secondItem="nAI-Vw-I2S" secondAttribute="centerX" id="60a-SR-pDd"/>
                             <constraint firstItem="x3n-Vg-4a1" firstAttribute="leading" secondItem="UW2-09-T7P" secondAttribute="leading" constant="20" id="Cz0-vF-54u"/>
                             <constraint firstItem="UW2-09-T7P" firstAttribute="bottom" secondItem="x3n-Vg-4a1" secondAttribute="bottom" constant="40" id="IXx-ue-Erc"/>
-                            <constraint firstItem="ldQ-Iq-EVe" firstAttribute="top" secondItem="UW2-09-T7P" secondAttribute="top" constant="100" id="PXb-mw-Tzm"/>
-                            <constraint firstItem="ldQ-Iq-EVe" firstAttribute="centerX" secondItem="nAI-Vw-I2S" secondAttribute="centerX" id="Vqz-MU-Cgl"/>
                             <constraint firstItem="UW2-09-T7P" firstAttribute="trailing" secondItem="x3n-Vg-4a1" secondAttribute="trailing" constant="20" id="dCA-8x-eVG"/>
+                            <constraint firstItem="LT4-il-3Bo" firstAttribute="centerY" secondItem="nAI-Vw-I2S" secondAttribute="centerY" id="uBL-Jv-JPp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UW2-09-T7P"/>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="dpB-z4-nqj" id="tw1-nM-LuY"/>
-                        <outlet property="circularProgressView" destination="ldQ-Iq-EVe" id="AAZ-LN-8yj"/>
+                        <outlet property="circularProgressBar" destination="LT4-il-3Bo" id="m4z-Gx-D87"/>
                         <outlet property="doneButton" destination="aVs-Nd-a9J" id="fil-Ws-Xt5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cM3-6v-OsK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1973.913043478261" y="728.57142857142856"/>
+            <point key="canvasLocation" x="1759.4202898550725" y="704.46428571428567"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="zv9-rA-Qpk">
@@ -195,7 +188,7 @@
         <scene sceneID="4nY-b8-ptq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CEK-Rg-Cmd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" image="clock" selectedImage="clock" id="zGN-1F-dlT"/>
+                    <tabBarItem key="tabBarItem" selectedImage="clock" id="zGN-1F-dlT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="APh-M8-aXz">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

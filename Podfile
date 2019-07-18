@@ -7,5 +7,5 @@ target 'Estimated' do
 
   # Pods for Estimated
   pod 'OnboardKit', :git => 'https://github.com/NikolaKirev/OnboardKit.git', :branch => 'master'
-
+  pod 'Charts'
 end

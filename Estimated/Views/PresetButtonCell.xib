@@ -24,21 +24,21 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2EI-7S-iIh" customClass="ETButton" customModule="Estimated" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="161.5" height="177.5"/>
-                                <state key="normal" title="+5 minute"/>
+                                <state key="normal" title="+15 Minutes"/>
                                 <connections>
                                     <action selector="fiveMinuteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ejj-nW-KMV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vf-qZ-byd" customClass="ETButton" customModule="Estimated" customModuleProvider="target">
                                 <rect key="frame" x="173.5" y="0.0" width="161" height="177.5"/>
-                                <state key="normal" title="+15 minute"/>
+                                <state key="normal" title="+30 Minutes"/>
                                 <connections>
                                     <action selector="fifteenMinuteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FO5-ye-HG5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuL-Ts-cxa" customClass="ETButton" customModule="Estimated" customModuleProvider="target">
                                 <rect key="frame" x="346.5" y="0.0" width="161.5" height="177.5"/>
-                                <state key="normal" title="+30minute"/>
+                                <state key="normal" title="+1 Hour"/>
                                 <connections>
                                     <action selector="thirtyMinuteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jyQ-OL-xbK"/>
                                 </connections>

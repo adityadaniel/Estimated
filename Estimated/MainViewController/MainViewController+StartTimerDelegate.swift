@@ -9,7 +9,7 @@
 import UIKit
 
 extension MainViewController: StartTimerDelegate {
-    func startTimerButtonDidTap() {
-        self.performSegue(withIdentifier: "StartTimerSegue", sender: self)
-    }
+  func startTimerButtonDidTap() {
+    self.performSegue(withIdentifier: "StartTimerSegue", sender: self)
+  }
 }

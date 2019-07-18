@@ -9,8 +9,8 @@
 import UIKit
 
 extension MainViewController: PresetButtonDelegate {
-    func addInterval(with interval: TimeInterval) {
-        duration += Int(interval)
-        self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.none)
-    }
+  func addInterval(with interval: TimeInterval) {
+    duration += Int(interval)
+    self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.none)
+  }
 }

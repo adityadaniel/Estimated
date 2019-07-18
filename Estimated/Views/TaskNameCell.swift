@@ -9,24 +9,25 @@
 import UIKit
 
 protocol TaskNameDelegate: class {
-    func finishAddingTaskName(taskName: String)
+  func finishAddingTaskName(taskName: String)
 }
 
 
 class TaskNameCell: UITableViewCell, UITextFieldDelegate {
-
-    weak var taskNameCellDelegate: TaskNameDelegate?
-    
-    @IBOutlet weak var taskNameTextField: UITextField!
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        print(textField.text!)
-        return true
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.taskNameCellDelegate?.finishAddingTaskName(taskName: textField.text!)
-        textField.resignFirstResponder()
-        return true
-    }
-
+  
+  weak var taskNameCellDelegate: TaskNameDelegate?
+  
+  @IBOutlet weak var taskNameTextField: UITextField!
+  
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    print(textField.text!)
+    self.taskNameCellDelegate?.finishAddingTaskName(taskName: taskNameTextField.text!)
+    return true
+  }
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    self.taskNameCellDelegate?.finishAddingTaskName(taskName: textField.text!)
+    textField.resignFirstResponder()
+    return true
+  }
+  
 }

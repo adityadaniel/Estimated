@@ -9,27 +9,27 @@
 import UIKit
 
 protocol DurationPickerDelegate: class {
-    func durationPickerDidChange(with interval: TimeInterval)
+  func durationPickerDidChange(with interval: TimeInterval)
 }
 
 class DurationPickerCell: UITableViewCell {
-    
-    var incrementInterval: TimeInterval?
-    var durationPickerDelegate: DurationPickerDelegate!
-
-    @IBOutlet weak var durationPicker: UIDatePicker!
-    
-    
-    @IBAction func durationPickerDidChange(_ sender: UIDatePicker) {
-        let duration = sender.countDownDuration
-        durationPickerDelegate.durationPickerDidChange(with: duration)
-        print("duration", duration)
-    }
-    
+  
+  var incrementInterval: TimeInterval?
+  var durationPickerDelegate: DurationPickerDelegate!
+  
+  @IBOutlet weak var durationPicker: UIDatePicker!
+  
+  
+  @IBAction func durationPickerDidChange(_ sender: UIDatePicker) {
+    let duration = sender.countDownDuration
+    durationPickerDelegate.durationPickerDidChange(with: duration)
+    print("duration", duration)
+  }
+  
 }
 
 extension DurationPickerCell: PresetButtonDelegate {
-    func addInterval(with interval: TimeInterval) {
-        durationPicker.countDownDuration += interval
-    }
+  func addInterval(with interval: TimeInterval) {
+    durationPicker.countDownDuration += interval
+  }
 }

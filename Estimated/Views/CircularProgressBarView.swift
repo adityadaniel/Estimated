@@ -119,7 +119,7 @@ class CircularProgressBar: UIView {
     self.backgroundLayer.lineWidth = lineWidth - (lineWidth * 20/100)
     self.backgroundLayer.fillColor = UIColor.gray.cgColor
     self.layer.addSublayer(backgroundLayer)
-
+    
   }
   
   private func drawForegroundLayer(){

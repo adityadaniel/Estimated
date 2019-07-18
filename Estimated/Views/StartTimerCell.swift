@@ -9,18 +9,18 @@
 import UIKit
 
 protocol StartTimerDelegate: class {
-    func startTimerButtonDidTap()
+  func startTimerButtonDidTap()
 }
 
 class StartTimerCell: UITableViewCell {
+  
+  weak var startTimerDelegate: StartTimerDelegate!
+  
+  @IBOutlet weak var startTimerButton: ETButton!
+  @IBAction func startTimerDidTap(_ sender: ETButton) {
     
-    weak var startTimerDelegate: StartTimerDelegate!
+    self.startTimerDelegate.startTimerButtonDidTap()
     
-    @IBOutlet weak var startTimerButton: ETButton!
-    @IBAction func startTimerDidTap(_ sender: ETButton) {
-        
-        self.startTimerDelegate.startTimerButtonDidTap()
-        
-    }
-    
+  }
+  
 }

@@ -10,17 +10,17 @@
 import UIKit
 
 class ETButton: UIButton {
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        self.setupView()
-    }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
     
-    func setupView() {
-        self.setTitleColor(.white, for: .normal)
-        self.layer.cornerRadius = 5
-        self.backgroundColor = Colors.purple
-    }
-
+    self.setupView()
+  }
+  
+  func setupView() {
+    self.setTitleColor(.white, for: .normal)
+    self.layer.cornerRadius = 5
+    self.backgroundColor = Colors.purple
+  }
+  
 }

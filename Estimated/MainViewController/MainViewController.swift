@@ -83,7 +83,6 @@ class MainViewController: UIViewController {
       if let destinationController = segue.destination as? TimerViewController {
         destinationController.runningEstimationTimer = est
         print(est)
-        
       }
     default:
       break

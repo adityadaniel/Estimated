@@ -30,7 +30,6 @@ class NotificationReminderSettingsViewController: UITableViewController {
     
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "IntervalCell")
     
-    
   }
   
   // MARK: - Table view data source

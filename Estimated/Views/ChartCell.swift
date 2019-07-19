@@ -7,9 +7,8 @@
 //
 
 import UIKit
+import Charts
 
 class ChartCell: UITableViewCell {
 
-  
-    
 }

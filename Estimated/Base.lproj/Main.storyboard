@@ -10,22 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--History View Controller-->
-        <scene sceneID="6U6-zw-ILr">
-            <objects>
-                <viewController id="SBR-Dd-lbq" customClass="HistoryViewController" customModule="Estimated" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="XRb-0O-DlO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="eyY-R9-T6t"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="icF-pM-0h5"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rK6-yv-mNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1087" y="575"/>
-        </scene>
         <!--Timer View Controller-->
         <scene sceneID="cLx-6U-bOt">
             <objects>
@@ -228,7 +212,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="SBR-Dd-lbq" kind="relationship" relationship="rootViewController" id="LEE-kJ-so0"/>
+                        <segue destination="aM0-hK-gMP" kind="relationship" relationship="rootViewController" id="kqG-Yj-PZB"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mbm-sB-xrR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -343,6 +327,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ng-sb-Gjg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1939" y="-109"/>
+        </scene>
+        <!--History View Controller-->
+        <scene sceneID="1QR-M9-4TX">
+            <objects>
+                <viewController id="aM0-hK-gMP" customClass="HistoryViewController" customModule="Estimated" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qEk-gR-5ge">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="F20-wA-ycM">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="S9F-VW-PcA">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S9F-VW-PcA" id="XLj-g6-fW5">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EstimationHistoryCell" rowHeight="150" id="QBR-Ty-lTY" customClass="EstimationHistoryCell" customModule="Estimated" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="99.5" width="414" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QBR-Ty-lTY" id="9Lu-Ii-kxL">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="aM0-hK-gMP" id="Ou6-HA-l5c"/>
+                                    <outlet property="delegate" destination="aM0-hK-gMP" id="GHF-M9-tg1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="F20-wA-ycM" firstAttribute="bottom" secondItem="6LN-Ld-VZZ" secondAttribute="bottom" id="71g-hL-rAl"/>
+                            <constraint firstItem="F20-wA-ycM" firstAttribute="leading" secondItem="6LN-Ld-VZZ" secondAttribute="leading" id="hPW-Jt-k3n"/>
+                            <constraint firstItem="F20-wA-ycM" firstAttribute="trailing" secondItem="6LN-Ld-VZZ" secondAttribute="trailing" id="pHz-tq-1sH"/>
+                            <constraint firstItem="F20-wA-ycM" firstAttribute="top" secondItem="6LN-Ld-VZZ" secondAttribute="top" id="wuN-ID-XoO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6LN-Ld-VZZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oou-79-DOP"/>
+                    <connections>
+                        <outlet property="tableView" destination="F20-wA-ycM" id="SxO-kV-kbd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2VK-go-fHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="886.95652173913049" y="574.55357142857144"/>
         </scene>
     </scenes>
     <resources>

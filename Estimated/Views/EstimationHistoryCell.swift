@@ -9,19 +9,35 @@
 import UIKit
 
 class EstimationHistoryCell: UITableViewCell {
+  
+  var estimation: EstimationHistory! {
+    didSet {
+      taskNameLabel.text = estimation.taskName!
+      dateLabel.text = estimation.date!
+      accuracyStatusLabel.text = "\(estimation.accuracy!)%"
+      let difference = (estimation.estimation! - estimation.timeSpent!) / estimation.estimation! * 100
+      if difference < 0 {
+        accuracyStatusLabel.text = "You're \(difference * -1) late"
+        accuracyBackgroundView.backgroundColor = Colors.lightRed
+        accuracyStatusLabel.textColor = Colors.lightRed
+      } else {
+        accuracyStatusLabel.text = "You're \(difference) early"
+        accuracyBackgroundView.backgroundColor = Colors.purple
+        accuracyStatusLabel.textColor = Colors.purple
+      }
+    }
+  }
 
   
   @IBOutlet weak var taskNameLabel: UILabel!
   @IBOutlet weak var dateLabel: UILabel!
   @IBOutlet weak var accuracyStatusLabel: UILabel!
-  @IBOutlet weak var differenceLabel: UILabel!
-  @IBOutlet weak var accuracyPercentLabel: UILabel! {
+  @IBOutlet weak var accuracyBackgroundView: UIView! {
     didSet {
-      accuracyPercentLabel.backgroundColor = Colors.lightRed
-      accuracyPercentLabel.textColor = .white
-      accuracyPercentLabel.layer.cornerRadius = 20
+      self.accuracyBackgroundView.layer.cornerRadius = 8
     }
   }
+  @IBOutlet weak var accuracyPercentLabel: UILabel!
   
   
 }

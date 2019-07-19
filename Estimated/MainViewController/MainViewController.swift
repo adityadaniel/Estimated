@@ -79,7 +79,7 @@ class MainViewController: UIViewController {
       }
     case "StartTimerSegue":
       
-      let est = Estimation(duration: TimeInterval(self.duration), reminderNotification: self.intervalSetting, taskName: self.taskName)
+      let est = Estimation(estimatedTime: TimeInterval(self.duration), reminderNotification: self.intervalSetting, taskName: self.taskName)
       
       if let destinationController = segue.destination as? TimerViewController {
         destinationController.runningEstimationTimer = est

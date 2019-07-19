@@ -99,7 +99,7 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     startTimer()
     
-    let durationInString = timeString(time: runningEstimationTimer.duration!)
+    let durationInString = timeString(time: runningEstimationTimer.estimatedTime!)
     
     estimationLabel.text = "Estimation: \(durationInString)"
    //taskLabel.text = runningEstimationTimer.taskName!
@@ -177,7 +177,7 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     circularProgressBar.setLabel = timeString(time: TimeInterval(seconds))
     
-    let progress = Double(seconds) / Double(runningEstimationTimer.duration!)
+    let progress = Double(seconds) / Double(runningEstimationTimer.estimatedTime!)
     if progress <= 1 {
       circularProgressBar.setProgress(to: progress, withAnimation: false)
     }
@@ -222,7 +222,7 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     func scheduleReminder(){
         
-        let estimation : TimeInterval = runningEstimationTimer.duration!
+        let estimation : TimeInterval = runningEstimationTimer.estimatedTime!
         let reminder = LocalNotificationManager()
         
         let date = Date()

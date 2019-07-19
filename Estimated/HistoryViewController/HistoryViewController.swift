@@ -10,8 +10,6 @@ import UIKit
 
 class HistoryViewController: UIViewController {
   
-  
-  
   var estimations: [EstimationHistory] = [EstimationHistory]()
   
   let est1 = EstimationHistory(taskName: "Write report 1", date: "27/08/2019", timeSpent: 1800, estimation: 900, accuracy: 50, accuracyStatus: true)

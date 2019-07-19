@@ -25,6 +25,7 @@
 		11B95EFC22E1751300A9A48A /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95EFA22E1751300A9A48A /* ChartCell.swift */; };
 		11B95EFD22E1751300A9A48A /* ChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B95EFB22E1751300A9A48A /* ChartCell.xib */; };
 		11B95F0022E1A29E00A9A48A /* EstimationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95EFF22E1A29E00A9A48A /* EstimationHistory.swift */; };
+		11B95F0322E200CC00A9A48A /* EstimationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95F0222E200CC00A9A48A /* EstimationDetailViewController.swift */; };
 		11FFF95E22DC5DAC00A9180A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF95D22DC5DAC00A9180A /* AppDelegate.swift */; };
 		11FFF96022DC5DAC00A9180A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF95F22DC5DAC00A9180A /* MainViewController.swift */; };
 		11FFF96322DC5DAC00A9180A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FFF96122DC5DAC00A9180A /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 		11B95EFA22E1751300A9A48A /* ChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
 		11B95EFB22E1751300A9A48A /* ChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartCell.xib; sourceTree = "<group>"; };
 		11B95EFF22E1A29E00A9A48A /* EstimationHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimationHistory.swift; sourceTree = "<group>"; };
+		11B95F0222E200CC00A9A48A /* EstimationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimationDetailViewController.swift; sourceTree = "<group>"; };
 		11FFF95A22DC5DAC00A9180A /* Estimated.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Estimated.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FFF95D22DC5DAC00A9180A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FFF95F22DC5DAC00A9180A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
@@ -121,6 +123,10 @@
 		11B95EF922E1599400A9A48A /* HistoryViewController */ = {
 			isa = PBXGroup;
 			children = (
+				11B95EF522E0B34200A9A48A /* EstimationHistoryCell.swift */,
+				11B95EF622E0B34200A9A48A /* EstimationHistoryCell.xib */,
+				11B95EFA22E1751300A9A48A /* ChartCell.swift */,
+				11B95EFB22E1751300A9A48A /* ChartCell.xib */,
 				11B95ED522E03A8B00A9A48A /* HistoryViewController.swift */,
 			);
 			path = HistoryViewController;
@@ -134,6 +140,14 @@
 				11B95EFF22E1A29E00A9A48A /* EstimationHistory.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		11B95F0122E2009A00A9A48A /* EstimationDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				11B95F0222E200CC00A9A48A /* EstimationDetailViewController.swift */,
+			);
+			path = EstimationDetailViewController;
 			sourceTree = "<group>";
 		};
 		11FFF95122DC5DAC00A9180A = {
@@ -158,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				11FFF96122DC5DAC00A9180A /* Main.storyboard */,
+				11B95F0122E2009A00A9A48A /* EstimationDetailViewController */,
 				11B95EFE22E1A0E600A9A48A /* Model */,
 				11B95EF922E1599400A9A48A /* HistoryViewController */,
 				F7008A2D22E0C065000A885C /* Estimated.entitlements */,
@@ -190,10 +205,6 @@
 				11FFF98822DC764D00A9180A /* StartTimerCell.swift */,
 				11FFF98922DC764D00A9180A /* StartTimerCell.xib */,
 				115B523C22DF59B300B83DE3 /* CircularProgressBarView.swift */,
-				11B95EF522E0B34200A9A48A /* EstimationHistoryCell.swift */,
-				11B95EF622E0B34200A9A48A /* EstimationHistoryCell.xib */,
-				11B95EFA22E1751300A9A48A /* ChartCell.swift */,
-				11B95EFB22E1751300A9A48A /* ChartCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -361,6 +372,7 @@
 				115B523422DEF3ED00B83DE3 /* MainViewController+TaskNameDelegate.swift in Sources */,
 				115B523622DF522000B83DE3 /* TimerViewController.swift in Sources */,
 				115B522322DD761E00B83DE3 /* NotificationReminderSettingsViewController.swift in Sources */,
+				11B95F0322E200CC00A9A48A /* EstimationDetailViewController.swift in Sources */,
 				115B522A22DEB88700B83DE3 /* MainViewController+DurationPickerDelegate.swift in Sources */,
 				115B523222DEE03700B83DE3 /* MainViewController+StartTimerDelegate.swift in Sources */,
 				11B95EFC22E1751300A9A48A /* ChartCell.swift in Sources */,

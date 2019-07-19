@@ -8,7 +8,7 @@
 
 import UIKit
 import OnboardKit
-
+import UserNotifications
 
 class MainViewController: UIViewController {
   
@@ -106,22 +106,29 @@ class MainViewController: UIViewController {
     
     let pageThree = OnboardPage(title: "Finish timer",
                                 imageName: "clock-alt",
-                                description: "Just tap the Finish button when you're done with your task. Remember, your task is independent from your timer.",
-                                advanceButtonTitle: "")
+                                description: "Just tap the Finish button when you're done with your task. Remember, your task is independent from your timer.\n\nPlease turn on notification so you can get reminded when you're past the estimated time.",
+                                advanceButtonTitle: "",
+                                actionButtonTitle: "Enable Notifications",
+                                action: { [weak self] completion in
+                                    // get a reference to the app delegate
+                                    let localNotifManager = LocalNotificationManager()
+                                    localNotifManager.requestAuthorization()
+    })
     
     let pageFour = OnboardPage(title: "Check your statistics",
                                imageName: "onboard-chart",
                                description: "You can check your performance and history in the statistics tab.",
                                advanceButtonTitle: "")
     
-    let pageFive = OnboardPage(title: "All Ready",
+    let pageFive = OnboardPage(title: "You're all set!",
                                imageName: "ikon",
-                               description: "You are all set up and ready to use Estimated. Begin by estimating your first task!",
+                               description: "Please turn on notifications so the app can remind you when you went past the estimated time.",
                                advanceButtonTitle: "Done")
+    
     
     return [pageOne, pageTwo, pageThree, pageFour, pageFive]
   }()
-  
+    
   fileprivate func showOnboardingPage() {
     
     let appearance = OnboardViewController.AppearanceConfiguration(tintColor: Colors.purple, titleColor: Colors.purple)

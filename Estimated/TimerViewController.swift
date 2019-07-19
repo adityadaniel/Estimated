@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import UserNotifications
 
-class TimerViewController: UIViewController {
+class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
   
   var runningEstimationTimer: Estimation!
   
@@ -139,6 +140,7 @@ class TimerViewController: UIViewController {
   func startTimer() {
     if !isTimerRunning {
       runTimer()
+      scheduleReminder()
       isTimerRunning = true
     } else {
     }
@@ -181,6 +183,7 @@ class TimerViewController: UIViewController {
     }
     
   }
+
   
   //adding activity without cancel
   func addActivity(name: String, estimated: Int, spend: Int, date: Date) {
@@ -215,5 +218,25 @@ class TimerViewController: UIViewController {
       print("Could not fetch. \(error), \(error.userInfo)")
     }
   }
+
+
+    func scheduleReminder(){
+        
+        let estimation : TimeInterval = runningEstimationTimer.duration!
+        let reminder = LocalNotificationManager()
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minute = calendar.component(.minute, from: date)
+        
+        reminder.notifications = [
+            LocalNotificationManager.myNotif(id: "reminder", title: "You're past your estimation!", subtitle: "It is past \(hour):\(minute)", estimation: estimation)
+        ]
+        
+        reminder.schedule()
+        reminder.listScheduledNotifications()
+    }
+
     
 }

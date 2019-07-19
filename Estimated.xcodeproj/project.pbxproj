@@ -22,6 +22,8 @@
 		11B95ED622E03A8B00A9A48A /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95ED522E03A8B00A9A48A /* HistoryViewController.swift */; };
 		11B95EF722E0B34200A9A48A /* EstimationHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95EF522E0B34200A9A48A /* EstimationHistoryCell.swift */; };
 		11B95EF822E0B34200A9A48A /* EstimationHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B95EF622E0B34200A9A48A /* EstimationHistoryCell.xib */; };
+		11B95EFC22E1751300A9A48A /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95EFA22E1751300A9A48A /* ChartCell.swift */; };
+		11B95EFD22E1751300A9A48A /* ChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B95EFB22E1751300A9A48A /* ChartCell.xib */; };
 		11FFF95E22DC5DAC00A9180A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF95D22DC5DAC00A9180A /* AppDelegate.swift */; };
 		11FFF96022DC5DAC00A9180A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFF95F22DC5DAC00A9180A /* MainViewController.swift */; };
 		11FFF96322DC5DAC00A9180A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FFF96122DC5DAC00A9180A /* Main.storyboard */; };
@@ -58,6 +60,8 @@
 		11B95ED522E03A8B00A9A48A /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		11B95EF522E0B34200A9A48A /* EstimationHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimationHistoryCell.swift; sourceTree = "<group>"; };
 		11B95EF622E0B34200A9A48A /* EstimationHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EstimationHistoryCell.xib; sourceTree = "<group>"; };
+		11B95EFA22E1751300A9A48A /* ChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
+		11B95EFB22E1751300A9A48A /* ChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartCell.xib; sourceTree = "<group>"; };
 		11FFF95A22DC5DAC00A9180A /* Estimated.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Estimated.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FFF95D22DC5DAC00A9180A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FFF95F22DC5DAC00A9180A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
@@ -172,6 +176,8 @@
 				115B523C22DF59B300B83DE3 /* CircularProgressBarView.swift */,
 				11B95EF522E0B34200A9A48A /* EstimationHistoryCell.swift */,
 				11B95EF622E0B34200A9A48A /* EstimationHistoryCell.xib */,
+				11B95EFA22E1751300A9A48A /* ChartCell.swift */,
+				11B95EFB22E1751300A9A48A /* ChartCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -261,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11B95EFD22E1751300A9A48A /* ChartCell.xib in Resources */,
 				11FFF96B22DC5DAE00A9180A /* LaunchScreen.storyboard in Resources */,
 				11FFF97A22DC6DCF00A9180A /* PresetButtonCell.xib in Resources */,
 				115B523B22DF566400B83DE3 /* Assets.xcassets in Resources */,
@@ -334,6 +341,7 @@
 				115B522322DD761E00B83DE3 /* NotificationReminderSettingsViewController.swift in Sources */,
 				115B522A22DEB88700B83DE3 /* MainViewController+DurationPickerDelegate.swift in Sources */,
 				115B523222DEE03700B83DE3 /* MainViewController+StartTimerDelegate.swift in Sources */,
+				11B95EFC22E1751300A9A48A /* ChartCell.swift in Sources */,
 				11FFF96022DC5DAC00A9180A /* MainViewController.swift in Sources */,
 				11FFF97522DC633E00A9180A /* DurationPickerCell.swift in Sources */,
 				11B95EF722E0B34200A9A48A /* EstimationHistoryCell.swift in Sources */,

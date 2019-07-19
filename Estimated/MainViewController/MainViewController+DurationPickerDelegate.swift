@@ -10,7 +10,7 @@ import UIKit
 extension MainViewController: DurationPickerDelegate {
   func durationPickerDidChange(with interval: TimeInterval) {
     duration = Int(interval)
-    let indexPath = IndexPath(row: 0, section: SetTimerSection.DurationPicker.rawValue)
-    tableView.reloadRows(at: [indexPath], with: .automatic)
+//    let indexPath = IndexPath(row: 0, section: SetTimerSection.DurationPicker.rawValue)
+//    tableView.reloadRows(at: [indexPath], with: .automatic)
   }
 }

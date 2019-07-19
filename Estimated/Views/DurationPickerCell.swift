@@ -22,8 +22,7 @@ class DurationPickerCell: UITableViewCell {
   
   @IBAction func durationPickerDidChange(_ sender: UIDatePicker) {
     let duration = sender.countDownDuration
-    durationPickerDelegate.durationPickerDidChange(with: duration)
-    print("duration", duration)
+    durationPickerDelegate.durationPickerDidChange(with: duration)  
   }
   
 }

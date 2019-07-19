@@ -36,7 +36,9 @@ extension MainViewController: UITableViewDataSource {
   fileprivate func durationPickerCell(tableView: UITableView, indexPath: IndexPath) -> DurationPickerCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "DurationPickerCell", for: indexPath) as! DurationPickerCell
     cell.durationPickerDelegate = self
-    cell.durationPicker.countDownDuration = TimeInterval(duration)
+    DispatchQueue.main.async {
+      cell.durationPicker.countDownDuration = TimeInterval(self.duration)
+    }
     return cell
   }
   

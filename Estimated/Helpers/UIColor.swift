@@ -19,4 +19,5 @@ struct Colors {
   static let lightPurple = UIColor(r: 90, g: 97, b: 136, a: 1)
   static let purple = UIColor(r: 64, g: 68, b: 179, a: 1)
   static let darkRed = UIColor(r: 89, g: 24, b: 48, a: 1)
+  static let lightRed = UIColor(r: 160, g: 24, b: 24, a: 1)
 }

@@ -17,10 +17,39 @@
                     <view key="view" contentMode="scaleToFill" id="XRb-0O-DlO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8eV-mU-IQs">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EstimationHistoryCell" id="gNF-lX-yNm" customClass="EstimationHistoryCell" customModule="Estimated" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gNF-lX-yNm" id="4T0-gz-Uhb">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="SBR-Dd-lbq" id="TGU-an-6dq"/>
+                                    <outlet property="delegate" destination="SBR-Dd-lbq" id="dMy-Ru-eK4"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8eV-mU-IQs" firstAttribute="top" secondItem="eyY-R9-T6t" secondAttribute="top" id="TVu-SJ-t0c"/>
+                            <constraint firstItem="8eV-mU-IQs" firstAttribute="leading" secondItem="eyY-R9-T6t" secondAttribute="leading" id="War-JY-KCe"/>
+                            <constraint firstItem="eyY-R9-T6t" firstAttribute="bottom" secondItem="8eV-mU-IQs" secondAttribute="bottom" id="nTR-fH-Z1n"/>
+                            <constraint firstItem="eyY-R9-T6t" firstAttribute="trailing" secondItem="8eV-mU-IQs" secondAttribute="trailing" id="riT-HY-Izx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="eyY-R9-T6t"/>
                     </view>
                     <navigationItem key="navigationItem" id="icF-pM-0h5"/>
+                    <connections>
+                        <outlet property="tableView" destination="8eV-mU-IQs" id="s9h-2X-bS2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rK6-yv-mNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

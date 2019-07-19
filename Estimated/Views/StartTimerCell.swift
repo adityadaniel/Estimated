@@ -17,6 +17,7 @@ class StartTimerCell: UITableViewCell {
   weak var startTimerDelegate: StartTimerDelegate!
   
   @IBOutlet weak var startTimerButton: ETButton!
+  
   @IBAction func startTimerDidTap(_ sender: ETButton) {
     
     self.startTimerDelegate.startTimerButtonDidTap()

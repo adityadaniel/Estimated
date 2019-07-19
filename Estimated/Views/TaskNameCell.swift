@@ -10,6 +10,7 @@ import UIKit
 
 protocol TaskNameDelegate: class {
   func finishAddingTaskName(taskName: String)
+  func checkTextFieldText(charactersCount: Int)
 }
 
 
@@ -20,9 +21,17 @@ class TaskNameCell: UITableViewCell, UITextFieldDelegate {
   @IBOutlet weak var taskNameTextField: UITextField!
   
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    print(textField.text!)
+    
+    let currentText = textField.text ?? ""
+    guard let stringRange = Range(range, in: currentText) else { return false }
+    
+    let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+    
+    // trigger delegate
+    self.taskNameCellDelegate?.checkTextFieldText(charactersCount: updatedText.count)
     self.taskNameCellDelegate?.finishAddingTaskName(taskName: taskNameTextField.text!)
-    return true
+   
+    return updatedText.count <= 60
   }
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     self.taskNameCellDelegate?.finishAddingTaskName(taskName: textField.text!)

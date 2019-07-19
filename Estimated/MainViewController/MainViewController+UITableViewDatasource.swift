@@ -67,6 +67,13 @@ extension MainViewController: UITableViewDataSource {
     cell.backgroundColor = .clear
     cell.selectionStyle = .none
     cell.startTimerDelegate = self
+    if taskNameTextFieldCharactersCount == 0 {
+      cell.startTimerButton.backgroundColor = UIColor.lightGray
+      cell.startTimerButton.isEnabled = false
+    } else {
+      cell.startTimerButton.backgroundColor = Colors.purple
+      cell.startTimerButton.isEnabled = true
+    }
     return cell
   }
   
@@ -123,4 +130,14 @@ extension MainViewController: UITableViewDataSource {
     }
     return 0
   }
+  
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    cellHeights[indexPath] = cell.frame.size.height
+  }
+  
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    return cellHeights[indexPath] ?? 70.0
+  }
+  
+  
 }

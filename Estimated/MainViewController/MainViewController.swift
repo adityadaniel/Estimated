@@ -15,6 +15,9 @@ class MainViewController: UIViewController {
   var duration: Int = 15 * 60
   var intervalSetting = 5
   var taskName = ""
+  var taskNameTextFieldCharactersCount = 0
+  
+  var cellHeights: [IndexPath: CGFloat] = [:]
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -35,8 +38,6 @@ class MainViewController: UIViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    
-    
     
     //    toggle this to show
     //    UserDefaults.standard.set(false, forKey: "onboardingScreenShown")
@@ -109,9 +110,9 @@ class MainViewController: UIViewController {
                                 advanceButtonTitle: "",
                                 actionButtonTitle: "Enable Notifications",
                                 action: { [weak self] completion in
-                                    // get a reference to the app delegate
-                                    let localNotifManager = LocalNotificationManager()
-                                    localNotifManager.requestAuthorization()
+                                  // get a reference to the app delegate
+                                  let localNotifManager = LocalNotificationManager()
+                                  localNotifManager.requestAuthorization()
     })
     
     let pageFour = OnboardPage(title: "Check your statistics",
@@ -127,7 +128,7 @@ class MainViewController: UIViewController {
     
     return [pageOne, pageTwo, pageThree, pageFour, pageFive]
   }()
-    
+  
   fileprivate func showOnboardingPage() {
     
     let appearance = OnboardViewController.AppearanceConfiguration(tintColor: Colors.purple, titleColor: Colors.purple)
@@ -137,4 +138,14 @@ class MainViewController: UIViewController {
     onboardingViewController.presentFrom(self, animated: true)
   }
   
+}
+
+
+extension UITableView {
+  func reloadWithScroll() {
+    let offset = contentOffset
+    reloadData()
+    layoutIfNeeded()
+    setContentOffset(offset, animated: true)
+  }
 }

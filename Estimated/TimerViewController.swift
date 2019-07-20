@@ -44,7 +44,13 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
   @IBOutlet weak var doneButton: ETButton!
   
   @IBOutlet weak var taskNameLabel: UILabel!
-  @IBOutlet weak var estimationLabel: UILabel!
+  @IBOutlet weak var estimationLabel: UILabel! {
+    didSet {
+      if seconds > currentEstimation.estimatedTime! {
+        self.estimationLabel.textColor = Colors.lightRed
+      }
+    }
+  }
   
   @IBAction func cancelButtonDidTap(_ sender: ETButton) {
     let alertController = UIAlertController(title: "Cancel timer", message: "Are you sure to cancel running timer? Please provide cancellation reason below.", preferredStyle: .alert)
@@ -76,7 +82,7 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
   @IBAction func doneButtonDidTap(_ sender: ETButton) {
     
     // show alert controller
-    let alertController = UIAlertController(title: "Finish timer?", message: "Are you sure to finish the timer? Please provide your cancellation reason below", preferredStyle: .alert)
+    let alertController = UIAlertController(title: "Finish timer?", message: "Are you sure to finish the timer?", preferredStyle: .alert)
     
     let okAction = UIAlertAction(title: "Finish", style: .default) { (_) in
       self.timer?.invalidate()
@@ -124,7 +130,7 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     super.viewWillAppear(animated)
     taskNameLabel.text = currentEstimation.taskName!
     
-    estimationLabel.text = "\(Double(currentEstimation.estimatedTime!).formatToString(with: .abbreviated))"
+    estimationLabel.text = "Estimation: \(Double(currentEstimation.estimatedTime!).formatToString(with: .abbreviated))"
   }
   
   @objc func pauseWhenBackground(noti: Notification) {

@@ -80,11 +80,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="accuracyBackgroundView" destination="zem-yM-rpy" id="Wlc-VP-b2B"/>
-                <outlet property="accuracyPercentLabel" destination="52Z-86-m5V" id="cN4-Bn-sa5"/>
-                <outlet property="accuracyStatusLabel" destination="0pg-CO-jTy" id="nL4-4L-R8d"/>
-                <outlet property="dateLabel" destination="yuO-hb-eGF" id="1pA-Uu-3S2"/>
-                <outlet property="taskNameLabel" destination="bBW-xP-e4R" id="nea-lv-zjv"/>
+                <outlet property="accuracyStatusLabel" destination="0pg-CO-jTy" id="YWP-sn-CfF"/>
+                <outlet property="percentAccuracyBackgroundView" destination="zem-yM-rpy" id="bKF-Iz-YaR"/>
+                <outlet property="percentAccuracyLabel" destination="52Z-86-m5V" id="pRu-NZ-Fy8"/>
+                <outlet property="taskDateLabel" destination="yuO-hb-eGF" id="Kqe-e3-j4E"/>
+                <outlet property="taskNameLabel" destination="bBW-xP-e4R" id="O1O-rb-odD"/>
             </connections>
             <point key="canvasLocation" x="-88" y="79"/>
         </tableViewCell>

@@ -10,34 +10,45 @@ import UIKit
 
 class EstimationHistoryCell: UITableViewCell {
   
-  var estimation: EstimationHistory! {
+  var estimation: Activity! {
     didSet {
       taskNameLabel.text = estimation.taskName!
-      dateLabel.text = estimation.date!
-      accuracyStatusLabel.text = "\(estimation.accuracy!)%"
-      let difference = (estimation.estimation! - estimation.timeSpent!) / estimation.estimation! * 100
-      if difference < 0 {
-        accuracyStatusLabel.text = "You're \(difference * -1) late"
-        accuracyBackgroundView.backgroundColor = Colors.lightRed
-        accuracyStatusLabel.textColor = Colors.lightRed
+      taskDateLabel.text = "\(estimation.date!)"
+    
+      
+      if estimation.isCancelled {
+        percentAccuracyBackgroundView.backgroundColor = .lightGray
+        accuracyStatusLabel.text = estimation.cancellationReason
+        percentAccuracyLabel.text = "-"
       } else {
-        accuracyStatusLabel.text = "You're \(difference) early"
-        accuracyBackgroundView.backgroundColor = Colors.purple
-        accuracyStatusLabel.textColor = Colors.purple
+        if estimation.estimatedTime > estimation.spentTime {
+          let percentAccuracy = estimation.spentTime / estimation.estimatedTime
+          percentAccuracyLabel.text = "\(percentAccuracy)"
+          percentAccuracyBackgroundView.backgroundColor = Colors.purple
+          accuracyStatusLabel.textColor = Colors.purple
+          accuracyStatusLabel.text = "You're early \(estimation.estimatedTime - estimation.spentTime)"
+        } else {
+          let percentAccuracy = estimation.estimatedTime / estimation.spentTime
+          percentAccuracyLabel.text = "\(percentAccuracy)"
+          percentAccuracyBackgroundView.backgroundColor = Colors.lightRed
+          percentAccuracyLabel.textColor = Colors.lightRed
+          accuracyStatusLabel.text = "You're late \(estimation.spentTime - estimation.estimatedTime)"
+        }
       }
     }
   }
-
   
+
   @IBOutlet weak var taskNameLabel: UILabel!
-  @IBOutlet weak var dateLabel: UILabel!
   @IBOutlet weak var accuracyStatusLabel: UILabel!
-  @IBOutlet weak var accuracyBackgroundView: UIView! {
+  @IBOutlet weak var taskDateLabel: UILabel!
+  @IBOutlet weak var percentAccuracyLabel: UILabel!
+  @IBOutlet weak var percentAccuracyBackgroundView: UIView! {
     didSet {
-      self.accuracyBackgroundView.layer.cornerRadius = 8
+      percentAccuracyBackgroundView.layer.cornerRadius = 8
     }
   }
-  @IBOutlet weak var accuracyPercentLabel: UILabel!
+  
   
   
 }

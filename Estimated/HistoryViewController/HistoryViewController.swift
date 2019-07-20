@@ -7,31 +7,43 @@
 //
 
 import UIKit
+import CoreData
 
 class HistoryViewController: UIViewController {
   
-  var estimations: [EstimationHistory] = [EstimationHistory]()
+  public var estimations = [Activity]()
   
-  let est1 = EstimationHistory(taskName: "Write report 1", date: "27/08/2019", timeSpent: 1800, estimation: 900, accuracy: 50, accuracyStatus: true)
-  let est2 = EstimationHistory(taskName: "Write report 2", date: "28/08/2019", timeSpent: 900, estimation: 1800, accuracy: 50, accuracyStatus: false)
-  let est3 = EstimationHistory(taskName: "Write report 3", date: "29/08/2019", timeSpent: 1800, estimation: 900, accuracy: 50, accuracyStatus: true)
-  let est4 = EstimationHistory(taskName: "Write report 4", date: "21/08/2019", timeSpent: 900, estimation: 1800, accuracy: 50, accuracyStatus: false)
-  let est5 = EstimationHistory(taskName: "Write report 5", date: "24/08/2019", timeSpent: 1800, estimation: 900, accuracy: 50, accuracyStatus: true)
-  let est6 = EstimationHistory(taskName: "Write report 6", date: "23/08/2019", timeSpent: 1800, estimation: 900, accuracy: 50, accuracyStatus: true)
-
+  private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+  private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
   
   @IBOutlet weak var tableView: UITableView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    estimations = [est1, est2, est3, est4, est5, est6]
-    
+    setupCell()
     navigationController?.navigationBar.prefersLargeTitles = true
     title = "Estimation History"
     
-    setupCell()
+    fetchEstimations()
+    tableView.reloadData()
     
+  }
+  
+  func sortEstimationBasedOnDate() -> [NSSortDescriptor?] {
+    return [NSSortDescriptor(key: "date", ascending: false)]
+  }
+  
+  func fetchEstimations() {
+    do {
+      let activityFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Activity")
+      let sortByDate = NSSortDescriptor(key: "date", ascending: false)
+      activityFetchRequest.sortDescriptors = [sortByDate]
+      estimations = try context.fetch(activityFetchRequest) as! [Activity]
+      print(estimations)
+    } catch let error as NSError {
+      print("Could not fetch. \(error), \(error.userInfo)")
+    }
   }
   
   func setupCell() {

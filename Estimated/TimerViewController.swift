@@ -46,7 +46,7 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
   @IBOutlet weak var taskNameLabel: UILabel!
   
   @IBAction func cancelButtonDidTap(_ sender: ETButton) {
-    let alertController = UIAlertController(title: "Cancel timer", message: "Are you sure to cancel running timer?", preferredStyle: .alert)
+    let alertController = UIAlertController(title: "Cancel timer", message: "Are you sure to cancel running timer? Please provide cancellation reason below.", preferredStyle: .alert)
     alertController.addTextField { (textField: UITextField) in
       textField.placeholder = "Cancellation Reason"
     }
@@ -55,9 +55,9 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
       self.isTimerRunning = false
       let cancellationReason = alertController.textFields![0] as UITextField
       if cancellationReason.text!.count > 1 {
-        print("cancellation reason", cancellationReason.text!)
+        self.addCancelledActivity(cancellationReason: cancellationReason.text!)
       } else {
-        print("cancellation reason: -")
+        self.addCancelledActivity(cancellationReason: "-")
       }
       self.dismiss(animated: true, completion: {
         self.dismiss(animated: true, completion: nil)
@@ -201,19 +201,28 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     estimation.isCancelled = false
     activities.append(estimation)
     appDelegate.saveContext()
+    print("saved!")
   }
   
   //adding activity with cancellation reason
   func addCancelledActivity(cancellationReason: String) {
+//    print("Current estimation taskName: ", currentEstimation.taskName!)
+//    print("Current estimation estimatedTime: ", currentEstimation.estimatedTime!)
+//    print("Current estimation spentTime: ", seconds)
+//    print("Current estimation date: ", Date())
+//    print("Current estimation isCancelled: ", true)
+//    print("Current estimation cancelled reason: ", cancellationReason)
+    
     let estimation = Activity(entity: Activity.entity(), insertInto: context)
     estimation.taskName = currentEstimation.taskName!
     estimation.estimatedTime = Int32(currentEstimation.estimatedTime!)
-    estimation.spentTime = Int32(currentEstimation.spentTime!)
+    estimation.spentTime = Int32(seconds)
     estimation.date = Date()
     estimation.isCancelled = true
     estimation.cancellationReason = cancellationReason
     activities.append(estimation)
     appDelegate.saveContext()
+    print("Saved!")
   }
   
   //fetching activity and put it into activities array

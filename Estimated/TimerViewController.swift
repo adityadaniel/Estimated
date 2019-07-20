@@ -234,6 +234,18 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     }
   }
   
+  private func deleteAllActivity() {
+    do {
+      activities = try context.fetch(Activity.fetchRequest())
+      for activity in activities
+      {
+        context.delete(activity)
+      }
+    } catch let error as NSError {
+      print("Detele all data in activity error : \(error) \(error.userInfo)")
+    }
+  }
+  
   
   func scheduleReminder(){
     let estimation: TimeInterval = TimeInterval(currentEstimation.estimatedTime!)

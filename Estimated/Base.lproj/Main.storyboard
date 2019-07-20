@@ -48,23 +48,34 @@
                                     <constraint firstAttribute="height" constant="300" id="xLt-nz-R8y"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Powerpoint" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN3-p9-GTM">
-                                <rect key="frame" x="20" y="234" width="374" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oMm-zk-6gx">
+                                <rect key="frame" x="20" y="166.5" width="374" height="51.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Powerpoint" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN3-p9-GTM">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S42-oK-Hfd">
+                                        <rect key="frame" x="0.0" y="32" width="374" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="LT4-il-3Bo" firstAttribute="centerX" secondItem="nAI-Vw-I2S" secondAttribute="centerX" id="60a-SR-pDd"/>
-                            <constraint firstItem="LT4-il-3Bo" firstAttribute="top" secondItem="LN3-p9-GTM" secondAttribute="bottom" constant="40" id="CdM-7H-aCg"/>
                             <constraint firstItem="x3n-Vg-4a1" firstAttribute="leading" secondItem="UW2-09-T7P" secondAttribute="leading" constant="20" id="Cz0-vF-54u"/>
                             <constraint firstItem="UW2-09-T7P" firstAttribute="bottom" secondItem="x3n-Vg-4a1" secondAttribute="bottom" constant="40" id="IXx-ue-Erc"/>
-                            <constraint firstItem="LN3-p9-GTM" firstAttribute="centerX" secondItem="nAI-Vw-I2S" secondAttribute="centerX" id="K5b-3A-qP4"/>
-                            <constraint firstItem="LN3-p9-GTM" firstAttribute="leading" secondItem="UW2-09-T7P" secondAttribute="leading" constant="20" id="UEH-lw-PCW"/>
+                            <constraint firstItem="oMm-zk-6gx" firstAttribute="bottom" secondItem="LT4-il-3Bo" secondAttribute="top" constant="-80" id="OZU-QL-yMh"/>
+                            <constraint firstItem="oMm-zk-6gx" firstAttribute="centerX" secondItem="LT4-il-3Bo" secondAttribute="centerX" id="Rbm-fk-7Lr"/>
+                            <constraint firstItem="UW2-09-T7P" firstAttribute="trailing" secondItem="oMm-zk-6gx" secondAttribute="trailing" constant="20" id="XkF-VL-Ji8"/>
                             <constraint firstItem="UW2-09-T7P" firstAttribute="trailing" secondItem="x3n-Vg-4a1" secondAttribute="trailing" constant="20" id="dCA-8x-eVG"/>
-                            <constraint firstItem="UW2-09-T7P" firstAttribute="trailing" secondItem="LN3-p9-GTM" secondAttribute="trailing" constant="20" id="k2q-0z-V5Z"/>
+                            <constraint firstItem="oMm-zk-6gx" firstAttribute="leading" secondItem="UW2-09-T7P" secondAttribute="leading" constant="20" id="iy8-lv-gu1"/>
                             <constraint firstItem="LT4-il-3Bo" firstAttribute="centerY" secondItem="nAI-Vw-I2S" secondAttribute="centerY" id="uBL-Jv-JPp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UW2-09-T7P"/>
@@ -73,13 +84,14 @@
                         <outlet property="cancelButton" destination="dpB-z4-nqj" id="tw1-nM-LuY"/>
                         <outlet property="circularProgressBar" destination="LT4-il-3Bo" id="m4z-Gx-D87"/>
                         <outlet property="doneButton" destination="aVs-Nd-a9J" id="fil-Ws-Xt5"/>
+                        <outlet property="estimationLabel" destination="S42-oK-Hfd" id="sns-5a-zcL"/>
                         <outlet property="taskNameLabel" destination="LN3-p9-GTM" id="U0j-Ah-aj1"/>
                         <segue destination="aM0-hK-gMP" kind="show" identifier="ShowEstimationHistorySegue" id="Pvp-qo-0Oz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cM3-6v-OsK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2677" y="-109"/>
+            <point key="canvasLocation" x="2676.811594202899" y="-109.15178571428571"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="zv9-rA-Qpk">

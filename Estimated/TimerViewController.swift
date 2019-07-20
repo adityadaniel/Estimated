@@ -44,6 +44,7 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
   @IBOutlet weak var doneButton: ETButton!
   
   @IBOutlet weak var taskNameLabel: UILabel!
+  @IBOutlet weak var estimationLabel: UILabel!
   
   @IBAction func cancelButtonDidTap(_ sender: ETButton) {
     let alertController = UIAlertController(title: "Cancel timer", message: "Are you sure to cancel running timer? Please provide cancellation reason below.", preferredStyle: .alert)
@@ -122,6 +123,8 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     taskNameLabel.text = currentEstimation.taskName!
+    
+    estimationLabel.text = "\(Double(currentEstimation.estimatedTime!).formatToString(with: .abbreviated))"
   }
   
   @objc func pauseWhenBackground(noti: Notification) {

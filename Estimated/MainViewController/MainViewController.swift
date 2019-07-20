@@ -55,14 +55,14 @@ class MainViewController: UIViewController {
   
   
   @objc func keyboardWillShow(_ notification:Notification) {
-    
+
     if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
       tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
     }
   }
-  
+
   @objc func keyboardWillHide(_ notification:Notification) {
-    
+
     if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
       tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
@@ -79,11 +79,11 @@ class MainViewController: UIViewController {
       }
     case "StartTimerSegue":
       
-      let est = Estimation(estimatedTime: TimeInterval(self.duration), reminderNotification: self.intervalSetting, taskName: self.taskName)
+      let currentEstimation = Estimation(taskName: taskName, taskDate: Date(), estimatedTime: duration, spentTime: nil, isCancelled: false, cancellationReason: nil)
       
       if let destinationController = segue.destination as? TimerViewController {
-        destinationController.runningEstimationTimer = est
-        print(est)
+        destinationController.currentEstimation = currentEstimation
+        print(currentEstimation)
       }
     default:
       break
@@ -130,7 +130,6 @@ class MainViewController: UIViewController {
   }()
   
   fileprivate func showOnboardingPage() {
-    
     let appearance = OnboardViewController.AppearanceConfiguration(tintColor: Colors.purple, titleColor: Colors.purple)
     
     let onboardingViewController = OnboardViewController(pageItems: onboardingPages, appearanceConfiguration: appearance)
@@ -140,12 +139,11 @@ class MainViewController: UIViewController {
   
 }
 
-
-extension UITableView {
-  func reloadWithScroll() {
-    let offset = contentOffset
-    reloadData()
-    layoutIfNeeded()
-    setContentOffset(offset, animated: true)
-  }
-}
+//extension UITableView {
+//  func reloadWithScroll() {
+//    let offset = contentOffset
+//    reloadData()
+//    layoutIfNeeded()
+//    setContentOffset(offset, animated: true)
+//  }
+//}

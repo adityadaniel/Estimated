@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import CoreData
 import UserNotifications
 
 class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
   
-  var runningEstimationTimer: Estimation!
+  var currentEstimation: Estimation!
   
   weak var timer: Timer?
   
@@ -25,11 +26,11 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
   var diffMins = 0
   var diffSecs = 0
   
-  //adding container
+  // Adding container
   private let appDelegate = UIApplication.shared.delegate as! AppDelegate
-  
   private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
   
+  // Core Data Entities Array
   public var activities = [Activity]()
   
   @IBOutlet weak var circularProgressBar: CircularProgressBar!
@@ -42,69 +43,78 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
   }
   @IBOutlet weak var doneButton: ETButton!
   
-  @IBOutlet weak var estimationLabel: UILabel!
+  @IBOutlet weak var taskNameLabel: UILabel!
   
   @IBAction func cancelButtonDidTap(_ sender: ETButton) {
-    
-    let alert = UIAlertController(title: "Cancel timer", message: "What's the reason?", preferredStyle: .alert)
-    let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+    let alertController = UIAlertController(title: "Cancel timer", message: "Are you sure to cancel running timer?", preferredStyle: .alert)
+    alertController.addTextField { (textField: UITextField) in
+      textField.placeholder = "Cancellation Reason"
+    }
+    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
       self.timer?.invalidate()
       self.isTimerRunning = false
+      let cancellationReason = alertController.textFields![0] as UITextField
+      if cancellationReason.text!.count > 1 {
+        print("cancellation reason", cancellationReason.text!)
+      } else {
+        print("cancellation reason: -")
+      }
       self.dismiss(animated: true, completion: {
         self.dismiss(animated: true, completion: nil)
       })
     }
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-      self.timer?.invalidate()
-      self.isTimerRunning = false
-      self.dismiss(animated: true, completion: nil)
-    }
-    alert.addAction(okAction)
-    alert.addAction(cancelAction)
-    self.present(alert, animated: true, completion: nil)
-  }
-  
-  @IBAction func doneButtonDidTap(_ sender: ETButton) {
-    
-    // show alert controller
-    let alertController = UIAlertController(title: "Are you sure to finish this timer?", message: "Are you sure to finish the timer?", preferredStyle: .alert)
-    
-    let okAction = UIAlertAction(title: "Finish", style: .default) { (_) in
-      self.timer?.invalidate()
-      self.dismiss(animated: true, completion: nil)
-      // save the data to core data
-    }
-    
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
       self.dismiss(animated: true, completion: nil)
     }
     
     alertController.addAction(okAction)
     alertController.addAction(cancelAction)
-
-    // save timer to coredata
-    // segue to history tab
-
+    self.present(alertController, animated: true, completion: nil)
+  }
+  
+  @IBAction func doneButtonDidTap(_ sender: ETButton) {
+    
+    // show alert controller
+    let alertController = UIAlertController(title: "Finish timer?", message: "Are you sure to finish the timer? Please provide your cancellation reason below", preferredStyle: .alert)
+    
+    let okAction = UIAlertAction(title: "Finish", style: .default) { (_) in
+      self.timer?.invalidate()
+      //      self.addActivity()
+      // Dismiss alertcontroller
+      self.dismiss(animated: true, completion: {
+        // Dismiss TimerViewController then show history segue
+        self.performSegue(withIdentifier: "ShowEstimationHistorySegue", sender: self)
+      })
+    }
+    
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+      // Dismiss alertcontroller
+      self.dismiss(animated: true, completion: {
+        // Dismiss TimerViewController
+        self.dismiss(animated: true, completion: nil)
+      })
+    }
+    
+    alertController.addAction(okAction)
+    alertController.addAction(cancelAction)
+    
+    present(alertController, animated: true, completion: nil)
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationController?.navigationBar.tintColor = Colors.purple
-    title = "\(runningEstimationTimer.taskName!)"
-    navigationController?.navigationBar.prefersLargeTitles = true
-    
-    let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
-    navigationItem.leftBarButtonItem = backButton
-    
     startTimer()
     
-    let durationInString = timeString(time: runningEstimationTimer.estimatedTime!)
+//    guard let spent = currentEstimation.spentTime else { return }
     
-    estimationLabel.text = "Estimation: \(durationInString)"
-   //taskLabel.text = runningEstimationTimer.taskName!
     NotificationCenter.default.addObserver(self, selector: #selector(pauseWhenBackground(noti:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(noti:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    taskNameLabel.text = currentEstimation.taskName!
   }
   
   @objc func pauseWhenBackground(noti: Notification) {
@@ -116,7 +126,6 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
   @objc func willEnterForeground(noti: Notification) {
     if let savedDate = UserDefaults.standard.object(forKey: "savedTime") as? Date {
       (diffHrs, diffMins, diffSecs) = TimerViewController.getTimeDifference(startDate: savedDate)
-      
       self.refresh(hours: diffHrs, mins: diffMins, secs: diffSecs)
     }
   }
@@ -133,9 +142,8 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     let s = secs
     seconds += hrs + minutes + s + 1
     self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerLabel), userInfo: nil, repeats: true)
-    
   }
-
+  
   
   func startTimer() {
     if !isTimerRunning {
@@ -164,49 +172,47 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     seconds += 1
     
-//    let hours = Int(seconds) / 3600
-//    let minutes = Int(seconds) / 60 % 60
-//
-//    let stringOfHours = String(format: "%02d", hours)
-//    let stringOfMinutes = String(format: "%02d", minutes)
-//    let stringOfSeconds = String(format: "%02d", seconds)
-//
-//    let timerText = "\(stringOfHours) : \(stringOfMinutes) : \(stringOfSeconds)"
+    //    let hours = Int(seconds) / 3600
+    //    let minutes = Int(seconds) / 60 % 60
+    //
+    //    let stringOfHours = String(format: "%02d", hours)
+    //    let stringOfMinutes = String(format: "%02d", minutes)
+    //    let stringOfSeconds = String(format: "%02d", seconds)
+    //
+    //    let timerText = "\(stringOfHours) : \(stringOfMinutes) : \(stringOfSeconds)"
     
-//    timerLabel.text = timeString(time: TimeInterval(seconds))
+    //    timerLabel.text = timeString(time: TimeInterval(seconds))
     
     circularProgressBar.setLabel = timeString(time: TimeInterval(seconds))
     
-    let progress = Double(seconds) / Double(runningEstimationTimer.estimatedTime!)
+    let progress = Double(seconds) / Double(currentEstimation.estimatedTime!)
     if progress <= 1 {
       circularProgressBar.setProgress(to: progress, withAnimation: false)
     }
-    
   }
-
   
   //adding activity without cancel
-  func addActivity(name: String, estimated: Int, spend: Int, date: Date) {
-    let activity = Activity(entity: Activity.entity(), insertInto: context)
-    activity.name = name
-    activity.estimatedTime = Int32(estimated)
-    activity.spendTime = Int32(spend)
-    activity.date = date
-    activity.isCancelled = false
-    activities.append(activity)
+  func addActivity() {
+    let estimation = Activity(entity: Activity.entity(), insertInto: context)
+    estimation.taskName = currentEstimation.taskName!
+    estimation.estimatedTime = Int32(currentEstimation.estimatedTime!)
+    estimation.spentTime = Int32(currentEstimation.spentTime!)
+    estimation.date = Date()
+    estimation.isCancelled = false
+    activities.append(estimation)
     appDelegate.saveContext()
   }
   
   //adding activity with cancellation reason
-  func addActivity(name: String, estimated: Int, spend: Int, date: Date, cancelReason: String) {
-    let activity = Activity(entity: Activity.entity(), insertInto: context)
-    activity.name = name
-    activity.estimatedTime = Int32(estimated)
-    activity.spendTime = Int32(spend)
-    activity.date = date
-    activity.isCancelled = true
-    activity.cancellationReason = cancelReason
-    activities.append(activity)
+  func addCancelledActivity(cancellationReason: String) {
+    let estimation = Activity(entity: Activity.entity(), insertInto: context)
+    estimation.taskName = currentEstimation.taskName!
+    estimation.estimatedTime = Int32(currentEstimation.estimatedTime!)
+    estimation.spentTime = Int32(currentEstimation.spentTime!)
+    estimation.date = Date()
+    estimation.isCancelled = true
+    estimation.cancellationReason = cancellationReason
+    activities.append(estimation)
     appDelegate.saveContext()
   }
   
@@ -218,25 +224,24 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
       print("Could not fetch. \(error), \(error.userInfo)")
     }
   }
-
-
-    func scheduleReminder(){
-        
-        let estimation : TimeInterval = runningEstimationTimer.estimatedTime!
-        let reminder = LocalNotificationManager()
-        
-        let date = Date()
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: date)
-        let minute = calendar.component(.minute, from: date)
-        
-        reminder.notifications = [
-            LocalNotificationManager.myNotif(id: "reminder", title: "You're past your estimation!", subtitle: "It is past \(hour):\(minute)", estimation: estimation)
-        ]
-        
-        reminder.schedule()
-        reminder.listScheduledNotifications()
-    }
-
+  
+  
+  func scheduleReminder(){
+    let estimation: TimeInterval = TimeInterval(currentEstimation.estimatedTime!)
+    let reminder = LocalNotificationManager()
     
+    let date = Date()
+    let calendar = Calendar.current
+    let hour = calendar.component(.hour, from: date)
+    let minute = calendar.component(.minute, from: date)
+    
+    reminder.notifications = [
+      LocalNotificationManager.myNotif(id: "reminder", title: "You're past your estimation!", subtitle: "It is past \(hour):\(minute)", estimation: estimation)
+    ]
+    
+    reminder.schedule()
+    reminder.listScheduledNotifications()
+  }
+  
+  
 }

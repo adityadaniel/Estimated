@@ -74,6 +74,7 @@
                         <outlet property="circularProgressBar" destination="LT4-il-3Bo" id="m4z-Gx-D87"/>
                         <outlet property="doneButton" destination="aVs-Nd-a9J" id="fil-Ws-Xt5"/>
                         <outlet property="taskNameLabel" destination="LN3-p9-GTM" id="U0j-Ah-aj1"/>
+                        <segue destination="aM0-hK-gMP" kind="show" identifier="ShowEstimationHistorySegue" id="Pvp-qo-0Oz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cM3-6v-OsK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -328,31 +329,31 @@
             </objects>
             <point key="canvasLocation" x="1890" y="-109"/>
         </scene>
-        <!--History View Controller-->
+        <!--Estimation History View Controller-->
         <scene sceneID="1QR-M9-4TX">
             <objects>
-                <viewController id="aM0-hK-gMP" customClass="HistoryViewController" customModule="Estimated" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aM0-hK-gMP" customClass="EstimationHistoryViewController" customModule="Estimated" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qEk-gR-5ge">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="F20-wA-ycM">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="250" id="S9F-VW-PcA">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="250"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EstimationPerformanceCell" id="S9F-VW-PcA" customClass="EstimationPerformanceCell" customModule="Estimated" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S9F-VW-PcA" id="XLj-g6-fW5">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="249.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EstimationHistoryCell" rowHeight="150" id="QBR-Ty-lTY" customClass="EstimationHistoryCell" customModule="Estimated" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="305.5" width="414" height="150"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EstimationHistoryCell" id="QBR-Ty-lTY" customClass="EstimationHistoryCell" customModule="Estimated" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QBR-Ty-lTY" id="9Lu-Ii-kxL">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -380,7 +381,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2VK-go-fHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="886.95652173913049" y="574.55357142857144"/>
+            <point key="canvasLocation" x="1087" y="575"/>
         </scene>
         <!--Estimation Detail View Controller-->
         <scene sceneID="JFs-Zn-jqY">
@@ -391,14 +392,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VY0-xH-6F9">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24x-EP-MAe">
-                                        <rect key="frame" x="20" y="0.0" width="374" height="362.5"/>
+                                        <rect key="frame" x="20" y="0.0" width="374" height="409"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="33C-Yq-anu">
-                                        <rect key="frame" x="0.0" y="362.5" width="414" height="362.5"/>
+                                        <rect key="frame" x="0.0" y="409" width="414" height="409"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EstimationDetailCell" textLabel="ShI-As-Ts4" detailTextLabel="48o-gr-q2U" style="IBUITableViewCellStyleValue1" id="RIN-nf-3gk">
@@ -446,11 +447,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sFb-lQ-reu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1673.913043478261" y="574.55357142857144"/>
+            <point key="canvasLocation" x="1890" y="575"/>
         </scene>
     </scenes>
     <resources>
         <image name="chart" width="27" height="27"/>
         <image name="timer" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Pvp-qo-0Oz"/>
+    </inferredMetricsTieBreakers>
 </document>

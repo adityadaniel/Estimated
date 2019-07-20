@@ -79,10 +79,8 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     let okAction = UIAlertAction(title: "Finish", style: .default) { (_) in
       self.timer?.invalidate()
-      //      self.addActivity()
-      // Dismiss alertcontroller
+      self.addActivity()
       self.dismiss(animated: true, completion: {
-        // Dismiss TimerViewController then show history segue
         self.performSegue(withIdentifier: "ShowEstimationHistorySegue", sender: self)
       })
     }
@@ -111,6 +109,15 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     NotificationCenter.default.addObserver(self, selector: #selector(pauseWhenBackground(noti:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(noti:)), name: UIApplication.willEnterForegroundNotification, object: nil)
   }
+  
+//  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//    switch segue {
+//    case "ShowEstimationHistorySegue":
+//      break
+//    default:
+//      break
+//    }
+//  }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -196,23 +203,17 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     let estimation = Activity(entity: Activity.entity(), insertInto: context)
     estimation.taskName = currentEstimation.taskName!
     estimation.estimatedTime = Int32(currentEstimation.estimatedTime!)
-    estimation.spentTime = Int32(currentEstimation.spentTime!)
+    estimation.spentTime = Int32(seconds)
     estimation.date = Date()
     estimation.isCancelled = false
+    estimation.cancellationReason = "-"
     activities.append(estimation)
     appDelegate.saveContext()
-    print("saved!")
+    print("Successfully saved estimation!")
   }
   
   //adding activity with cancellation reason
   func addCancelledActivity(cancellationReason: String) {
-//    print("Current estimation taskName: ", currentEstimation.taskName!)
-//    print("Current estimation estimatedTime: ", currentEstimation.estimatedTime!)
-//    print("Current estimation spentTime: ", seconds)
-//    print("Current estimation date: ", Date())
-//    print("Current estimation isCancelled: ", true)
-//    print("Current estimation cancelled reason: ", cancellationReason)
-    
     let estimation = Activity(entity: Activity.entity(), insertInto: context)
     estimation.taskName = currentEstimation.taskName!
     estimation.estimatedTime = Int32(currentEstimation.estimatedTime!)
@@ -222,7 +223,7 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     estimation.cancellationReason = cancellationReason
     activities.append(estimation)
     appDelegate.saveContext()
-    print("Saved!")
+    print("Successfully saved estimation with cancellation reason!")
   }
   
   

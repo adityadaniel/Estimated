@@ -1,5 +1,5 @@
 //
-//  HistoryViewController.swift
+//  EstimationHistoryViewController.swift
 //  Estimated
 //
 //  Created by Daniel Aditya Istyana on 18/07/19.
@@ -7,16 +7,20 @@
 //
 
 import UIKit
+import Charts
 import CoreData
 
-class HistoryViewController: UIViewController {
+class EstimationHistoryViewController: UIViewController {
   
-  public var estimations = [Activity]()
+  var estimations = [Activity]()
+  var notCancelledEstimations = [Activity]()
+  var notCancelledPredicate: NSPredicate?
   
   private let appDelegate = UIApplication.shared.delegate as! AppDelegate
   private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
   
   @IBOutlet weak var tableView: UITableView!
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,11 +31,25 @@ class HistoryViewController: UIViewController {
     
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete all record", style: .plain, target: self, action: #selector(deleteEstimations))
     
-    fetchEstimations()
-    tableView.reloadData()
-    
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    fetchEstimations()
+    tableView.reloadData()
+  }
+  
+  // MARK: - Setup custom cell
+  func setupCell() {
+    let chartCell = UINib(nibName: "ChartCell", bundle: nil)
+    tableView.register(chartCell, forCellReuseIdentifier: "ChartCell")
+    
+    let historyCell = UINib(nibName: "EstimationHistoryCell", bundle: nil)
+    tableView.register(historyCell, forCellReuseIdentifier: "EstimationHistoryCell")
+  }
+  
+  // MARK: - CoreData Function
+  // Core data sort by latest entries
   func sortEstimationBasedOnDate() -> [NSSortDescriptor?] {
     return [NSSortDescriptor(key: "date", ascending: false)]
   }
@@ -40,45 +58,53 @@ class HistoryViewController: UIViewController {
     do {
       let activityFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Activity")
       let sortByDate = NSSortDescriptor(key: "date", ascending: false)
+      
+      // Sort by date
       activityFetchRequest.sortDescriptors = [sortByDate]
+      
+      // Fetch core data
       estimations = try context.fetch(activityFetchRequest) as! [Activity]
-      print(estimations)
+      
+      // Add core data predicate to filter data that is cancelled
+//      activityFetchRequest.predicate = notCancelledPredicate
+//      notCancelledPredicate = NSPredicate(value: false)
+      
+      // Fetch estimation data that is not cancelled and store to array
+//      notCancelledEstimations = try context.fetch(activityFetchRequest) as! [Activity]
+      
     } catch let error as NSError {
       print("Could not fetch. \(error), \(error.userInfo)")
     }
   }
   
   func deleteAllActivity() {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Activity")
+    let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
     do {
-      estimations = try context.fetch(Activity.fetchRequest())
-      for activity in estimations {
-        context.delete(activity)
-      }
-    } catch let error as NSError {
-      print("Detele all data in activity error : \(error) \(error.userInfo)")
+      try context.execute(batchDeleteRequest)
+    } catch let er as NSError {
+      print("Something wrong", er)
     }
+    
+    tableView.reloadData()
   }
   
   @objc func deleteEstimations() {
     self.deleteAllActivity()
-    tableView.reloadData()
   }
   
-  func setupCell() {
-    let chartCell = UINib(nibName: "ChartCell", bundle: nil)
-    tableView.register(chartCell, forCellReuseIdentifier: "ChartCell")
-    
-    let historyCell = UINib(nibName: "EstimationHistoryCell", bundle: nil)
-    tableView.register(historyCell, forCellReuseIdentifier: "EstimationHistoryCell")
-  }
 }
 
-extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
+extension EstimationHistoryViewController: UITableViewDataSource, UITableViewDelegate {
+  
+  enum HistorySection: Int {
+    case ChartSection = 0, EstimationHistorySection
+  }
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     switch section {
     case 1:
-      if estimations.count > 1 {
+      if estimations.count >= 1 {
         return "Your estimations history"
       } else {
         return "No estimations history found"
@@ -87,10 +113,6 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
       break
     }
     return ""
-  }
-  
-  enum HistorySection: Int {
-    case ChartSection = 0, EstimationHistorySection
   }
   
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -113,11 +135,18 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     let section = indexPath.section
     
     if section == HistorySection.ChartSection.rawValue {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "ChartCell", for: indexPath) as! ChartCell
+      let cell = tableView.dequeueReusableCell(withIdentifier: "EstimationPerformanceCell", for: indexPath) as! EstimationPerformanceCell
+      notCancelledEstimations = estimations.filter { (activity) -> Bool in
+        activity.isCancelled == false
+      }
       return cell
     } else if section == HistorySection.EstimationHistorySection.rawValue {
       let cell = tableView.dequeueReusableCell(withIdentifier: "EstimationHistoryCell", for: indexPath) as! EstimationHistoryCell
-      cell.estimation = estimations[indexPath.row]
+      if estimations.count >= 1 {
+        cell.estimation = estimations[indexPath.row]
+      } else {
+        cell.estimation = nil
+      }
       return cell
     } else {
       return UITableViewCell()
@@ -130,6 +159,8 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     switch section {
     case HistorySection.ChartSection.rawValue:
       return 250
+    case HistorySection.EstimationHistorySection.rawValue:
+      return 100
     default:
       break
     }

@@ -10,33 +10,43 @@ import UIKit
 
 class EstimationHistoryCell: UITableViewCell {
   
-  var estimation: Activity! {
+  var estimation: Activity? {
     didSet {
-      taskNameLabel.text = estimation.taskName!
-      taskDateLabel.text = setDate(d: estimation.date!)
-    
-      
-      if estimation.isCancelled {
-        percentAccuracyBackgroundView.backgroundColor = .lightGray
-        accuracyStatusLabel.text = estimation.cancellationReason
-        percentAccuracyLabel.text = "-"
-      } else {
-        if estimation.estimatedTime > estimation.spentTime {
-          let percentAccuracy = estimation.spentTime / estimation.estimatedTime * 100
-          percentAccuracyLabel.text = "\(percentAccuracy)%"
-          percentAccuracyBackgroundView.backgroundColor = Colors.purple
-          accuracyStatusLabel.textColor = Colors.purple
-          accuracyStatusLabel.text = "You're early \(estimation.estimatedTime - estimation.spentTime) mins"
+      if let estimationDataExist = estimation {
+        taskNameLabel.text = estimationDataExist.taskName!
+        taskDateLabel.text = setDate(d: estimationDataExist.date!)
+        
+        
+        if estimationDataExist.isCancelled {
+          percentAccuracyBackgroundView.backgroundColor = .lightGray
+          accuracyStatusLabel.text = estimationDataExist.cancellationReason
+          percentAccuracyLabel.text = "-"
         } else {
-          let percentAccuracy = estimation.estimatedTime / estimation.spentTime * 100
-          percentAccuracyLabel.text = "\(percentAccuracy)%"
-          percentAccuracyBackgroundView.backgroundColor = Colors.lightRed
-          percentAccuracyLabel.textColor = Colors.lightRed
-          accuracyStatusLabel.text = "You're late \(estimation.spentTime - estimation.estimatedTime) mins"
+          if estimationDataExist.estimatedTime > estimationDataExist.spentTime {
+            let percentAccuracy = estimationDataExist.spentTime / estimationDataExist.estimatedTime * 100
+            percentAccuracyLabel.text = "\(percentAccuracy)%"
+            percentAccuracyBackgroundView.backgroundColor = Colors.purple
+            accuracyStatusLabel.textColor = Colors.purple
+            let difference = estimationDataExist.estimatedTime - estimationDataExist.spentTime * -1
+            accuracyStatusLabel.text = "You're early \(timeString(time: TimeInterval(difference)))"
+          } else {
+            let percentAccuracy = estimationDataExist.estimatedTime / estimationDataExist.spentTime * 100
+            percentAccuracyLabel.text = "\(percentAccuracy)%"
+            percentAccuracyBackgroundView.backgroundColor = Colors.lightRed
+            accuracyStatusLabel.textColor = Colors.lightRed
+            let difference = estimationDataExist.estimatedTime - estimationDataExist.spentTime
+            accuracyStatusLabel.text = "You're late \(timeString(time: TimeInterval(difference)))"
+          }
         }
+      } else {
+        taskNameLabel.text = ""
+        percentAccuracyLabel.text = ""
+        accuracyStatusLabel.text = ""
+        taskDateLabel.text = ""
       }
     }
   }
+
   
   func setDate(d:Date) -> String {
     let dateFormat = DateFormatter()
@@ -56,6 +66,12 @@ class EstimationHistoryCell: UITableViewCell {
     }
   }
   
+  func timeString(time:TimeInterval) -> String {
+    let hours = Int(time) / 3600
+    let minutes = Int(time) / 60 % 60
+    let seconds = Int(time) % 60
+    return String(format:"%02i : %02i : %02i", hours, minutes, seconds)
+  }
   
   
 }

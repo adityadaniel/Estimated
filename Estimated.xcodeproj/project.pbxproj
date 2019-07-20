@@ -19,12 +19,12 @@
 		115B523622DF522000B83DE3 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B523522DF522000B83DE3 /* TimerViewController.swift */; };
 		115B523B22DF566400B83DE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 115B523A22DF566400B83DE3 /* Assets.xcassets */; };
 		115B523D22DF59B300B83DE3 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B523C22DF59B300B83DE3 /* CircularProgressBarView.swift */; };
+		1181CCE622E36DBF00B8CEA1 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181CCE522E36DBF00B8CEA1 /* Date.swift */; };
 		11B95ED322DF73FD00A9A48A /* Estimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95ED222DF73FD00A9A48A /* Estimation.swift */; };
 		11B95EF722E0B34200A9A48A /* EstimationHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95EF522E0B34200A9A48A /* EstimationHistoryCell.swift */; };
 		11B95EF822E0B34200A9A48A /* EstimationHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B95EF622E0B34200A9A48A /* EstimationHistoryCell.xib */; };
 		11B95EFC22E1751300A9A48A /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95EFA22E1751300A9A48A /* ChartCell.swift */; };
 		11B95EFD22E1751300A9A48A /* ChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B95EFB22E1751300A9A48A /* ChartCell.xib */; };
-		11B95F0022E1A29E00A9A48A /* EstimationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95EFF22E1A29E00A9A48A /* EstimationHistory.swift */; };
 		11B95F0322E200CC00A9A48A /* EstimationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95F0222E200CC00A9A48A /* EstimationDetailViewController.swift */; };
 		11D268A822E3257400AB9779 /* EstimationPerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D268A622E3257400AB9779 /* EstimationPerformanceCell.swift */; };
 		11D268A922E3257400AB9779 /* EstimationPerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11D268A722E3257400AB9779 /* EstimationPerformanceCell.xib */; };
@@ -62,12 +62,12 @@
 		115B523522DF522000B83DE3 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		115B523A22DF566400B83DE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		115B523C22DF59B300B83DE3 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
+		1181CCE522E36DBF00B8CEA1 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		11B95ED222DF73FD00A9A48A /* Estimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Estimation.swift; sourceTree = "<group>"; };
 		11B95EF522E0B34200A9A48A /* EstimationHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimationHistoryCell.swift; sourceTree = "<group>"; };
 		11B95EF622E0B34200A9A48A /* EstimationHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EstimationHistoryCell.xib; sourceTree = "<group>"; };
 		11B95EFA22E1751300A9A48A /* ChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
 		11B95EFB22E1751300A9A48A /* ChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartCell.xib; sourceTree = "<group>"; };
-		11B95EFF22E1A29E00A9A48A /* EstimationHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimationHistory.swift; sourceTree = "<group>"; };
 		11B95F0222E200CC00A9A48A /* EstimationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimationDetailViewController.swift; sourceTree = "<group>"; };
 		11D268A622E3257400AB9779 /* EstimationPerformanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimationPerformanceCell.swift; sourceTree = "<group>"; };
 		11D268A722E3257400AB9779 /* EstimationPerformanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EstimationPerformanceCell.xib; sourceTree = "<group>"; };
@@ -127,13 +127,13 @@
 		11B95EF922E1599400A9A48A /* HistoryViewController */ = {
 			isa = PBXGroup;
 			children = (
+				112FF78D22E323E1004D745B /* EstimationHistoryViewController.swift */,
 				11B95EF522E0B34200A9A48A /* EstimationHistoryCell.swift */,
 				11B95EF622E0B34200A9A48A /* EstimationHistoryCell.xib */,
-				11B95EFA22E1751300A9A48A /* ChartCell.swift */,
-				11B95EFB22E1751300A9A48A /* ChartCell.xib */,
-				112FF78D22E323E1004D745B /* EstimationHistoryViewController.swift */,
 				11D268A622E3257400AB9779 /* EstimationPerformanceCell.swift */,
 				11D268A722E3257400AB9779 /* EstimationPerformanceCell.xib */,
+				11B95EFA22E1751300A9A48A /* ChartCell.swift */,
+				11B95EFB22E1751300A9A48A /* ChartCell.xib */,
 			);
 			path = HistoryViewController;
 			sourceTree = "<group>";
@@ -143,7 +143,6 @@
 			children = (
 				11FFF96422DC5DAC00A9180A /* Estimated.xcdatamodeld */,
 				11B95ED222DF73FD00A9A48A /* Estimation.swift */,
-				11B95EFF22E1A29E00A9A48A /* EstimationHistory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -219,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				11FFF97E22DC6F2D00A9180A /* UIColor.swift */,
+				1181CCE522E36DBF00B8CEA1 /* Date.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -373,6 +373,7 @@
 				11FFF96622DC5DAC00A9180A /* Estimated.xcdatamodeld in Sources */,
 				F7008A2F22E0C9BB000A885C /* LocalNotificationManager.swift in Sources */,
 				11FFF97F22DC6F2D00A9180A /* UIColor.swift in Sources */,
+				1181CCE622E36DBF00B8CEA1 /* Date.swift in Sources */,
 				11FFF97922DC6DCF00A9180A /* PresetButtonCell.swift in Sources */,
 				115B522E22DEB90700B83DE3 /* MainViewController+UITableViewDatasource.swift in Sources */,
 				11FFF98A22DC764D00A9180A /* StartTimerCell.swift in Sources */,
@@ -389,7 +390,6 @@
 				11FFF97C22DC6EF400A9180A /* ETButton.swift in Sources */,
 				112FF78E22E323E1004D745B /* EstimationHistoryViewController.swift in Sources */,
 				115B523D22DF59B300B83DE3 /* CircularProgressBarView.swift in Sources */,
-				11B95F0022E1A29E00A9A48A /* EstimationHistory.swift in Sources */,
 				115B522C22DEB8B400B83DE3 /* MainPickerController+NotificationSettingsDelegate.swift in Sources */,
 				115B522822DEB85C00B83DE3 /* MainViewController+PresetButtonDelegate.swift in Sources */,
 				11FFF98222DC722A00A9180A /* NotificationReminderCell.swift in Sources */,

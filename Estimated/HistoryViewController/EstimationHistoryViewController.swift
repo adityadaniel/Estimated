@@ -30,6 +30,8 @@ class EstimationHistoryViewController: UIViewController {
     title = "Estimation History"
     
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete all record", style: .plain, target: self, action: #selector(deleteEstimations))
+    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Generate fake data", style: .plain, target: self, action: #selector(generateFakeData))
+    
     
   }
   
@@ -41,8 +43,8 @@ class EstimationHistoryViewController: UIViewController {
   
   // MARK: - Setup custom cell
   func setupCell() {
-    let chartCell = UINib(nibName: "ChartCell", bundle: nil)
-    tableView.register(chartCell, forCellReuseIdentifier: "ChartCell")
+    let chartCell = UINib(nibName: "EstimationPerformanceCell", bundle: nil)
+    tableView.register(chartCell, forCellReuseIdentifier: "EstimationPerformanceCell")
     
     let historyCell = UINib(nibName: "EstimationHistoryCell", bundle: nil)
     tableView.register(historyCell, forCellReuseIdentifier: "EstimationHistoryCell")
@@ -93,6 +95,45 @@ class EstimationHistoryViewController: UIViewController {
     self.deleteAllActivity()
   }
   
+  @objc func generateFakeData() {
+    
+    let est1 = Estimation(taskName: "Write proposal 1", taskDate: Date(), estimatedTime: 600, spentTime: 900, isCancelled: false, cancellationReason: "-")
+    let est2 = Estimation(taskName: "Write proposal 2", taskDate: Date(), estimatedTime: 1200, spentTime: 2600, isCancelled: false, cancellationReason: "-")
+    let est3 = Estimation(taskName: "Write proposal 3", taskDate: Date(), estimatedTime: 800, spentTime: 2400, isCancelled: false, cancellationReason: "-")
+    let est4 = Estimation(taskName: "Write proposal 4", taskDate: Date(), estimatedTime: 2400, spentTime: 650, isCancelled: true, cancellationReason: "need to go (est4)")
+    let est5 = Estimation(taskName: "Write proposal 5", taskDate: Date(), estimatedTime: 600, spentTime:2400, isCancelled: false, cancellationReason: "-")
+    let est6 = Estimation(taskName: "Write proposal 6", taskDate: Date(), estimatedTime: 2400, spentTime: 1200, isCancelled: false, cancellationReason: "-")
+    let est7 = Estimation(taskName: "Write proposal 7", taskDate: Date(), estimatedTime: 600, spentTime: 660, isCancelled: false, cancellationReason: "-")
+    let est8 = Estimation(taskName: "Write proposal 8", taskDate: Date(), estimatedTime: 2400, spentTime: 120, isCancelled: true, cancellationReason: "need to go (est 8)")
+    let est9 = Estimation(taskName: "Write proposal 9", taskDate: Date(), estimatedTime: 600, spentTime: 660, isCancelled: false, cancellationReason: "-")
+    let est10 = Estimation(taskName: "Write proposal 10", taskDate: Date(), estimatedTime: 1200, spentTime: 900, isCancelled: false, cancellationReason: "-")
+  
+    let fakeEstimations = [
+      est1,
+      est2,
+      est3,
+      est4,
+      est5,
+      est6,
+      est7,
+      est8,
+      est9,
+      est10
+    ]
+    
+    fakeEstimations.forEach { (estimation) in
+      let estimationActivity = Activity(entity: Activity.entity(), insertInto: context)
+      estimationActivity.taskName = estimation.taskName!
+      estimationActivity.date = estimation.taskDate!
+      estimationActivity.estimatedTime = Int32(estimation.estimatedTime!)
+      estimationActivity.spentTime = Int32(estimation.spentTime!)
+      estimationActivity.isCancelled = estimation.isCancelled
+      estimationActivity.cancellationReason = estimation.cancellationReason!
+      appDelegate.saveContext()
+    }
+    self.tableView.reloadData()
+  }
+  
 }
 
 extension EstimationHistoryViewController: UITableViewDataSource, UITableViewDelegate {
@@ -139,13 +180,54 @@ extension EstimationHistoryViewController: UITableViewDataSource, UITableViewDel
       notCancelledEstimations = estimations.filter { (activity) -> Bool in
         activity.isCancelled == false
       }
+      
+      var accuracy: [Double] = []
+      
+      notCancelledEstimations.forEach { (estimation) in
+        let difference = estimation.estimatedTime - estimation.spentTime
+        if difference < 0 {
+          let accuracyLevel = Double(estimation.estimatedTime) / Double(estimation.spentTime) * 100
+          accuracy.append(accuracyLevel)
+        } else {
+          let accuracyLevel = Double(estimation.spentTime) / Double(estimation.estimatedTime) * 100
+          accuracy.append(accuracyLevel)
+        }
+      }
+      
+      cell.accuracyData = accuracy
+      cell.setChart()
+      
       return cell
     } else if section == HistorySection.EstimationHistorySection.rawValue {
       let cell = tableView.dequeueReusableCell(withIdentifier: "EstimationHistoryCell", for: indexPath) as! EstimationHistoryCell
+      
       if estimations.count >= 1 {
-        cell.estimation = estimations[indexPath.row]
-      } else {
-        cell.estimation = nil
+        let estimation = estimations[indexPath.row]
+        cell.taskNameLabel.text = estimation.taskName!
+        cell.taskDateLabel.text = estimation.date?.convertToFormattedString()
+        if !estimation.isCancelled {
+          let difference = estimation.estimatedTime - estimation.spentTime
+          if difference < 0 {
+            // spent time more than estimated time
+            let percentAccuracy = Double(estimation.estimatedTime) / Double(estimation.spentTime) * 100
+            cell.percentAccuracyBackgroundView.backgroundColor = Colors.lightRed
+            cell.percentAccuracyLabel.text = "\(round(percentAccuracy))%"
+            cell.accuracyStatusLabel.text = "You're late \(TimeInterval(difference * -1).formatToString(with: .short))"
+            cell.accuracyStatusLabel.textColor = Colors.lightRed
+          } else {
+            // estimated time is more than spent time
+            let percentAccuracy = Double(estimation.spentTime) / Double(estimation.estimatedTime) * 100
+            cell.percentAccuracyBackgroundView.backgroundColor = Colors.purple
+            cell.percentAccuracyLabel.text = "\(round(percentAccuracy))%"
+            cell.accuracyStatusLabel.text = "You're early \(TimeInterval(difference).formatToString(with: .short))"
+            cell.accuracyStatusLabel.textColor = Colors.purple
+          }
+        } else {
+          cell.percentAccuracyBackgroundView.backgroundColor = .lightGray
+          cell.percentAccuracyLabel.text = "-"
+          cell.accuracyStatusLabel.text = "Timer cancelled"
+          cell.accuracyStatusLabel.textColor = .lightGray
+        }
       }
       return cell
     } else {

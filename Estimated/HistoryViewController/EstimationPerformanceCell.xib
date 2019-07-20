@@ -19,21 +19,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="174.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UKS-ab-xXN" customClass="LineChartView" customModule="Charts">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRX-co-OXq" customClass="LineChartView" customModule="Charts">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="174.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="UKS-ab-xXN" secondAttribute="bottom" id="9Pf-aB-xnV"/>
-                    <constraint firstAttribute="trailing" secondItem="UKS-ab-xXN" secondAttribute="trailing" id="Bit-ud-918"/>
-                    <constraint firstItem="UKS-ab-xXN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XuT-mc-o6N"/>
-                    <constraint firstItem="UKS-ab-xXN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="dzi-gB-NVl"/>
+                    <constraint firstItem="uRX-co-OXq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9HL-Cv-rOz"/>
+                    <constraint firstAttribute="trailing" secondItem="uRX-co-OXq" secondAttribute="trailing" id="LN9-Ne-56U"/>
+                    <constraint firstAttribute="bottom" secondItem="uRX-co-OXq" secondAttribute="bottom" id="cZo-CJ-3WT"/>
+                    <constraint firstItem="uRX-co-OXq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="r3F-fu-6Ui"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="lineChartView" destination="UKS-ab-xXN" id="iYy-sK-BAV"/>
+                <outlet property="lineChartView" destination="uRX-co-OXq" id="SSF-Te-D9G"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="100.78125"/>
         </tableViewCell>

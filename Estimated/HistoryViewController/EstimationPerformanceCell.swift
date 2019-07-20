@@ -9,16 +9,44 @@
 import UIKit
 import Charts
 
-class EstimationPerformanceCell: UITableViewCell {
-
-  var estimationData: [Activity] = []
-    
+class EstimationPerformanceCell: UITableViewCell, ChartViewDelegate {
+  
+  var accuracyData: [Double] = []
+  
   @IBOutlet weak var lineChartView: LineChartView!
   
-  func getAccuracyData() {
-    for estimation in estimationData {
-      
+  override func awakeFromNib() {
+    setChart()
+  }
+  
+  func setChart() {
+    var lineChartDataEntry = [ChartDataEntry]()
+    for i in 0..<accuracyData.count {
+      let value = ChartDataEntry(x: Double(i), y: accuracyData[i])
+      lineChartDataEntry.append(value)
     }
+    
+    let line1 = LineChartDataSet(entries: lineChartDataEntry, label: "Accuracy")
+    line1.lineWidth = 2
+    line1.colors = [Colors.purple]
+    line1.circleRadius = 4
+    line1.circleColors = [Colors.purple]
+  
+    
+    let data = LineChartData()
+    data.addDataSet(line1)
+    
+    lineChartView.data = data
+    lineChartView.leftAxis.axisMaximum = 100
+    lineChartView.leftAxis.axisMinimum = 0
+    lineChartView.xAxis.labelPosition = .bottom
+    lineChartView.xAxis.drawGridLinesEnabled = false
+    lineChartView.rightAxis.axisMaximum = 100
+    lineChartView.rightAxis.axisMinimum = 0
+    lineChartView.rightAxis.drawLabelsEnabled = false
+    
+    
+    lineChartView.chartDescription?.text = "Your accuracy performance"
   }
   
 }

@@ -225,27 +225,6 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     print("Saved!")
   }
   
-  //fetching activity and put it into activities array
-  private func fetchActivity() {
-    do {
-      activities = try context.fetch(Activity.fetchRequest())
-    } catch let error as NSError {
-      print("Could not fetch. \(error), \(error.userInfo)")
-    }
-  }
-  
-  private func deleteAllActivity() {
-    do {
-      activities = try context.fetch(Activity.fetchRequest())
-      for activity in activities
-      {
-        context.delete(activity)
-      }
-    } catch let error as NSError {
-      print("Detele all data in activity error : \(error) \(error.userInfo)")
-    }
-  }
-  
   
   func scheduleReminder(){
     let estimation: TimeInterval = TimeInterval(currentEstimation.estimatedTime!)

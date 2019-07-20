@@ -25,6 +25,8 @@ class HistoryViewController: UIViewController {
     navigationController?.navigationBar.prefersLargeTitles = true
     title = "Estimation History"
     
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete all record", style: .plain, target: self, action: #selector(deleteEstimations))
+    
     fetchEstimations()
     tableView.reloadData()
     
@@ -46,6 +48,22 @@ class HistoryViewController: UIViewController {
     }
   }
   
+  func deleteAllActivity() {
+    do {
+      estimations = try context.fetch(Activity.fetchRequest())
+      for activity in estimations {
+        context.delete(activity)
+      }
+    } catch let error as NSError {
+      print("Detele all data in activity error : \(error) \(error.userInfo)")
+    }
+  }
+  
+  @objc func deleteEstimations() {
+    self.deleteAllActivity()
+    tableView.reloadData()
+  }
+  
   func setupCell() {
     let chartCell = UINib(nibName: "ChartCell", bundle: nil)
     tableView.register(chartCell, forCellReuseIdentifier: "ChartCell")
@@ -56,6 +74,20 @@ class HistoryViewController: UIViewController {
 }
 
 extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
+  
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    switch section {
+    case 1:
+      if estimations.count > 1 {
+        return "Your estimations history"
+      } else {
+        return "No estimations history found"
+      }
+    default:
+      break
+    }
+    return ""
+  }
   
   enum HistorySection: Int {
     case ChartSection = 0, EstimationHistorySection
@@ -94,12 +126,10 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     let section = indexPath.section
-    
+
     switch section {
     case HistorySection.ChartSection.rawValue:
       return 250
-    case HistorySection.EstimationHistorySection.rawValue:
-      return 100
     default:
       break
     }

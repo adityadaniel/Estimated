@@ -15,6 +15,7 @@ class EstimationHistoryViewController: UIViewController {
   var estimations = [Activity]()
   var notCancelledEstimations = [Activity]()
   var notCancelledPredicate: NSPredicate?
+  var barChartData: BarChartData!
   
   private let appDelegate = UIApplication.shared.delegate as! AppDelegate
   private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -29,8 +30,8 @@ class EstimationHistoryViewController: UIViewController {
     navigationController?.navigationBar.prefersLargeTitles = true
     title = "Estimation History"
     
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete all record", style: .plain, target: self, action: #selector(deleteEstimations))
-    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Generate fake data", style: .plain, target: self, action: #selector(generateFakeData))
+//    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete all record", style: .plain, target: self, action: #selector(deleteEstimations))
+//    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Generate fake data", style: .plain, target: self, action: #selector(generateFakeData))
     
     
   }
@@ -134,6 +135,17 @@ class EstimationHistoryViewController: UIViewController {
     self.tableView.reloadData()
   }
   
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    switch segue.identifier {
+    case "ShowDetailViewControllerSegue":
+      let vc = segue.destination as! EstimationDetailViewController
+      vc.barChartData = self.barChartData
+    default:
+      break
+    }
+  }
+  
+  
 }
 
 extension EstimationHistoryViewController: UITableViewDataSource, UITableViewDelegate {
@@ -234,6 +246,7 @@ extension EstimationHistoryViewController: UITableViewDataSource, UITableViewDel
       return UITableViewCell()
     }
   }
+
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     let section = indexPath.section
@@ -250,7 +263,30 @@ extension EstimationHistoryViewController: UITableViewDataSource, UITableViewDel
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    tableView.deselectRow(at: indexPath, animated: false)
+    switch indexPath.section {
+    case 1:
+      let estimationData = estimations[indexPath.row]
+      
+      let spentTime = estimationData.spentTime
+      let estimatedTime = estimationData.estimatedTime
+      
+      var barDataEntries: [BarChartDataEntry] = []
+      barDataEntries.append(BarChartDataEntry(x: Double(1), y: Double(estimatedTime)))
+      barDataEntries.append(BarChartDataEntry(x: Double(2), y: Double(spentTime)))
+      
+      let chartDataSet = BarChartDataSet(entries: barDataEntries, label: "Time")
+      chartDataSet.colors = [Colors.lightPurple, Colors.purple]
+      
+      let chartData = BarChartData(dataSet: chartDataSet)
+      
+      self.barChartData = chartData
+      
+      performSegue(withIdentifier: "ShowDetailViewControllerSegue", sender: self)
+    default:
+      break
+    }
   }
+  
+  
   
 }

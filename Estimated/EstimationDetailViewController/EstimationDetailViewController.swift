@@ -7,37 +7,63 @@
 //
 
 import UIKit
+import Charts
 
 class EstimationDetailViewController: UIViewController {
-
-  @IBOutlet weak var estimationChart: UIView!
+  
+  var barChartData: BarChartData!
+  
+  
   @IBOutlet weak var tableView: UITableView!
   
   override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
+    super.viewDidLoad()
+    
+    setupCell()
+  }
+  
+  func setupCell() {
+    let detailChartCell = UINib(nibName: "EstimationDetailChartCell", bundle: nil)
+    tableView.register(detailChartCell, forCellReuseIdentifier: "EstimationDetailChartCell")
+  }
+  
 }
 
 extension EstimationDetailViewController: UITableViewDataSource, UITableViewDelegate {
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    switch indexPath.section {
+    case 0:
+      return 250
+    default:
+      break
+    }
+    return 100
+  }
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == 0 {
+    switch section {
+    case 0:
+      return 1
+    case 1:
       return 5
+    default:
+      break
     }
     return 1
   }
   
+  
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "EstimationDetailCell", for: indexPath) 
-    switch indexPath.row {
-    case 1:
-      cell.textLabel?.text = ""
-      cell.detailTextLabel?.text = ""
+    switch indexPath.section {
+    case 0:
+      let cell = tableView.dequeueReusableCell(withIdentifier: "EstimationDetailChartCell", for: indexPath) as! EstimationDetailChartCell
+      cell.barChartView.data = barChartData
+      return cell
     default:
       break
     }
-    return cell
+    return UITableViewCell()
   }
-  
-  
 }

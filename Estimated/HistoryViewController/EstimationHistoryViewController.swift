@@ -16,6 +16,7 @@ class EstimationHistoryViewController: UIViewController {
   var notCancelledEstimations = [Activity]()
   var notCancelledPredicate: NSPredicate?
   var barChartData: BarChartData!
+  var estimationData: Activity!
   
   private let appDelegate = UIApplication.shared.delegate as! AppDelegate
   private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -140,6 +141,7 @@ class EstimationHistoryViewController: UIViewController {
     case "ShowDetailViewControllerSegue":
       let vc = segue.destination as! EstimationDetailViewController
       vc.barChartData = self.barChartData
+      vc.estimationData = self.estimationData
     default:
       break
     }
@@ -265,7 +267,7 @@ extension EstimationHistoryViewController: UITableViewDataSource, UITableViewDel
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     switch indexPath.section {
     case 1:
-      let estimationData = estimations[indexPath.row]
+      estimationData = estimations[indexPath.row]
       
       let spentTime = estimationData.spentTime
       let estimatedTime = estimationData.estimatedTime

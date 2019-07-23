@@ -21,6 +21,7 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
   lazy var timerStartedDate = Date()
   
   var seconds: Int = 0
+  var progress: Double!
   
   var diffHrs = 0
   var diffMins = 0
@@ -70,9 +71,7 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
         self.dismiss(animated: true, completion: nil)
       })
     }
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-      self.dismiss(animated: true, completion: nil)
-    }
+    let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
     
     alertController.addAction(okAction)
     alertController.addAction(cancelAction)
@@ -92,13 +91,7 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
       })
     }
     
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-      // Dismiss alertcontroller
-      self.dismiss(animated: true, completion: {
-        // Dismiss TimerViewController
-        self.dismiss(animated: true, completion: nil)
-      })
-    }
+    let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
     
     alertController.addAction(okAction)
     alertController.addAction(cancelAction)
@@ -129,8 +122,17 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     taskNameLabel.text = currentEstimation.taskName!
-    
     estimationLabel.text = "Estimation: \(Double(currentEstimation.estimatedTime!).formatToString(with: .abbreviated))"
+  
+    updateProgressCircleBar()
+  }
+  
+  func updateProgressCircleBar() {
+    if self.progress != nil {
+      DispatchQueue.main.async {
+        self.circularProgressBar.setProgress(to: self.progress, withAnimation: false)
+      }
+    }
   }
   
   @objc func pauseWhenBackground(noti: Notification) {
@@ -201,9 +203,9 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     circularProgressBar.setLabel = timeString(time: TimeInterval(seconds))
     
-    let progress = Double(seconds) / Double(currentEstimation.estimatedTime!)
-    if progress <= 1 {
-      circularProgressBar.setProgress(to: progress, withAnimation: false)
+    progress = Double(seconds) / Double(currentEstimation.estimatedTime!)
+    if progress! <= 1 {
+      circularProgressBar.setProgress(to: progress!, withAnimation: false)
     }
   }
   
@@ -252,6 +254,5 @@ class TimerViewController: UIViewController, UNUserNotificationCenterDelegate {
     reminder.schedule()
     reminder.listScheduledNotifications()
   }
-  
   
 }

@@ -20,6 +20,11 @@
 		115B523B22DF566400B83DE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 115B523A22DF566400B83DE3 /* Assets.xcassets */; };
 		115B523D22DF59B300B83DE3 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B523C22DF59B300B83DE3 /* CircularProgressBarView.swift */; };
 		1181CCE622E36DBF00B8CEA1 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181CCE522E36DBF00B8CEA1 /* Date.swift */; };
+		1181CCF122E4CC0400B8CEA1 /* EstimationDetailDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181CCEF22E4CC0400B8CEA1 /* EstimationDetailDataCell.swift */; };
+		1181CCF222E4CC0400B8CEA1 /* EstimationDetailDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1181CCF022E4CC0400B8CEA1 /* EstimationDetailDataCell.xib */; };
+		1181CCF522E4D6EF00B8CEA1 /* EstimationDetailTaskDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181CCF322E4D6EF00B8CEA1 /* EstimationDetailTaskDataCell.swift */; };
+		1181CCF622E4D6EF00B8CEA1 /* EstimationDetailTaskDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1181CCF422E4D6EF00B8CEA1 /* EstimationDetailTaskDataCell.xib */; };
+		1181CCF822E4EA2000B8CEA1 /* AppDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181CCF722E4EA2000B8CEA1 /* AppDelegate+Extension.swift */; };
 		11B95ED322DF73FD00A9A48A /* Estimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95ED222DF73FD00A9A48A /* Estimation.swift */; };
 		11B95EF722E0B34200A9A48A /* EstimationHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B95EF522E0B34200A9A48A /* EstimationHistoryCell.swift */; };
 		11B95EF822E0B34200A9A48A /* EstimationHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B95EF622E0B34200A9A48A /* EstimationHistoryCell.xib */; };
@@ -63,6 +68,11 @@
 		115B523A22DF566400B83DE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		115B523C22DF59B300B83DE3 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
 		1181CCE522E36DBF00B8CEA1 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		1181CCEF22E4CC0400B8CEA1 /* EstimationDetailDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimationDetailDataCell.swift; sourceTree = "<group>"; };
+		1181CCF022E4CC0400B8CEA1 /* EstimationDetailDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EstimationDetailDataCell.xib; sourceTree = "<group>"; };
+		1181CCF322E4D6EF00B8CEA1 /* EstimationDetailTaskDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimationDetailTaskDataCell.swift; sourceTree = "<group>"; };
+		1181CCF422E4D6EF00B8CEA1 /* EstimationDetailTaskDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EstimationDetailTaskDataCell.xib; sourceTree = "<group>"; };
+		1181CCF722E4EA2000B8CEA1 /* AppDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extension.swift"; sourceTree = "<group>"; };
 		11B95ED222DF73FD00A9A48A /* Estimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Estimation.swift; sourceTree = "<group>"; };
 		11B95EF522E0B34200A9A48A /* EstimationHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimationHistoryCell.swift; sourceTree = "<group>"; };
 		11B95EF622E0B34200A9A48A /* EstimationHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EstimationHistoryCell.xib; sourceTree = "<group>"; };
@@ -151,6 +161,10 @@
 				11B95F0222E200CC00A9A48A /* EstimationDetailViewController.swift */,
 				11B95EFA22E1751300A9A48A /* EstimationDetailChartCell.swift */,
 				11B95EFB22E1751300A9A48A /* EstimationDetailChartCell.xib */,
+				1181CCEF22E4CC0400B8CEA1 /* EstimationDetailDataCell.swift */,
+				1181CCF022E4CC0400B8CEA1 /* EstimationDetailDataCell.xib */,
+				1181CCF322E4D6EF00B8CEA1 /* EstimationDetailTaskDataCell.swift */,
+				1181CCF422E4D6EF00B8CEA1 /* EstimationDetailTaskDataCell.xib */,
 			);
 			path = EstimationDetailViewController;
 			sourceTree = "<group>";
@@ -185,6 +199,7 @@
 				11FFF97D22DC6F1300A9180A /* Helpers */,
 				11FFF97222DC631A00A9180A /* Views */,
 				11FFF95D22DC5DAC00A9180A /* AppDelegate.swift */,
+				1181CCF722E4EA2000B8CEA1 /* AppDelegate+Extension.swift */,
 				115B522222DD761E00B83DE3 /* NotificationReminderSettingsViewController.swift */,
 				11FFF96922DC5DAE00A9180A /* LaunchScreen.storyboard */,
 				11FFF96C22DC5DAE00A9180A /* Info.plist */,
@@ -312,7 +327,9 @@
 				115B523B22DF566400B83DE3 /* Assets.xcassets in Resources */,
 				11B95EF822E0B34200A9A48A /* EstimationHistoryCell.xib in Resources */,
 				11FFF98B22DC764D00A9180A /* StartTimerCell.xib in Resources */,
+				1181CCF222E4CC0400B8CEA1 /* EstimationDetailDataCell.xib in Resources */,
 				11FFF98722DC756F00A9180A /* TaskNameCell.xib in Resources */,
+				1181CCF622E4D6EF00B8CEA1 /* EstimationDetailTaskDataCell.xib in Resources */,
 				11FFF97622DC633E00A9180A /* DurationPickerViewCell.xib in Resources */,
 				11FFF98322DC722A00A9180A /* NotificationReminderCell.xib in Resources */,
 				11FFF96322DC5DAC00A9180A /* Main.storyboard in Resources */,
@@ -368,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1181CCF122E4CC0400B8CEA1 /* EstimationDetailDataCell.swift in Sources */,
 				11FFF98622DC756F00A9180A /* TaskNameCell.swift in Sources */,
 				11D268A822E3257400AB9779 /* EstimationPerformanceCell.swift in Sources */,
 				11FFF96622DC5DAC00A9180A /* Estimated.xcdatamodeld in Sources */,
@@ -393,7 +411,9 @@
 				115B522C22DEB8B400B83DE3 /* MainPickerController+NotificationSettingsDelegate.swift in Sources */,
 				115B522822DEB85C00B83DE3 /* MainViewController+PresetButtonDelegate.swift in Sources */,
 				11FFF98222DC722A00A9180A /* NotificationReminderCell.swift in Sources */,
+				1181CCF522E4D6EF00B8CEA1 /* EstimationDetailTaskDataCell.swift in Sources */,
 				115B522622DEB7E200B83DE3 /* MainViewController+UITableViewDelegate.swift in Sources */,
+				1181CCF822E4EA2000B8CEA1 /* AppDelegate+Extension.swift in Sources */,
 				11B95ED322DF73FD00A9A48A /* Estimation.swift in Sources */,
 				11FFF95E22DC5DAC00A9180A /* AppDelegate.swift in Sources */,
 			);
@@ -542,6 +562,7 @@
 			baseConfigurationReference = 56543DD53DD40468C0BB9637 /* Pods-Estimated.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Aditya Daniel Istyana (456MFJM288)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9H8AZ8D28D;
 				INFOPLIST_FILE = Estimated/Info.plist;
@@ -551,7 +572,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.adityadaniel.EstimatedApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = EstimatedApp;
+				PROVISIONING_PROFILE_SPECIFIER = "New dist";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -562,6 +583,7 @@
 			baseConfigurationReference = 6ABB8B6524B91C7D01EF9CCE /* Pods-Estimated.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Aditya Daniel Istyana (9H8AZ8D28D)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9H8AZ8D28D;
 				INFOPLIST_FILE = Estimated/Info.plist;
@@ -571,7 +593,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.adityadaniel.EstimatedApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = EstimatedApp;
+				PROVISIONING_PROFILE_SPECIFIER = "EstimatedApp Dist";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

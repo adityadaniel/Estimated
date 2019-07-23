@@ -39,10 +39,16 @@ class EstimationPerformanceCell: UITableViewCell, ChartViewDelegate {
     lineChartView.data = data
     lineChartView.leftAxis.axisMaximum = 100
     lineChartView.leftAxis.axisMinimum = 0
-    lineChartView.xAxis.labelPosition = .bottom
-    lineChartView.xAxis.drawGridLinesEnabled = false
     lineChartView.rightAxis.axisMaximum = 100
     lineChartView.rightAxis.axisMinimum = 0
+    
+    lineChartView.xAxis.labelPosition = .bottom
+    lineChartView.xAxis.drawGridLinesEnabled = false
+    
+    // make sure chart isn't scaled
+    lineChartView.scaleXEnabled = false
+    lineChartView.scaleYEnabled = false
+    
     lineChartView.rightAxis.drawLabelsEnabled = false
     
     

@@ -14,38 +14,40 @@ import UIKit
 
 class LocalNotificationManager: UIViewController, UNUserNotificationCenterDelegate {
     var notifications = [myNotif]()
-    
+  
     struct myNotif {
         var id:String
         var title:String
         var subtitle:String
         var estimation:TimeInterval
     }
-    
+  
     func listScheduledNotifications()
     {
         UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
-            
+          
             for notification in notifications {
                 print(notification)
             }
         }
-        
+      
     }
-    
+  
     func requestAuthorization()
     {
         UNUserNotificationCenter.current() // 1
-            .requestAuthorization(options: [.alert, .sound, .badge]) { // 2
+          .requestAuthorization(options: [.sound, .badge]) { // 2
                 granted, error in
-                print("Permission granted: \(granted)") // 3
+              if granted == true && error == nil {
+                self.scheduleNotifications()
+              }
         }
     }
-    
+  
     func schedule()
     {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
-            
+          
             switch settings.authorizationStatus {
             case .notDetermined:
                 self.requestAuthorization()
@@ -56,7 +58,7 @@ class LocalNotificationManager: UIViewController, UNUserNotificationCenterDelega
             }
         }
     }
-    
+  
     private func scheduleNotifications()
     {
         for notification in notifications
@@ -64,23 +66,22 @@ class LocalNotificationManager: UIViewController, UNUserNotificationCenterDelega
             let content      = UNMutableNotificationContent()
             content.title    = notification.title
             content.sound    = .default
-            content.badge    = 1
             content.subtitle = notification.subtitle
-            
+          
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(notification.estimation), repeats: false)
-            
+          
             let request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
-            
+          
             UNUserNotificationCenter.current().delegate = self
-            
+          
             UNUserNotificationCenter.current().add(request) { error in
-                
+              
                 guard error == nil else { return }
-                
+              
                 print("Notification scheduled! --- ID = \(notification.id), \(notification.estimation)")
             }
         }
     }
 
-    
+  
 }
